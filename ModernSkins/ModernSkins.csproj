@@ -81,6 +81,8 @@
     <Compile Include="AutoBundler.cs" />
     <Compile Include="AutoBundling.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Skin.cs" />
+    <Compile Include="StyleBundle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="BundleTransformer.Configuration.xsd">
