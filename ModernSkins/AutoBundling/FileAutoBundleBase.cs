@@ -4,9 +4,9 @@ namespace ModernSkins.AutoBundling
 {
     public abstract class FileAutoBundleBase : AutoBundleBase
     {
-        protected FileAutoBundleBase(string path) : base(path)
+        protected FileAutoBundleBase(string path, IFileSystem fileSystem) : base(path, fileSystem)
         {
-            if (!File.Exists(path))
+            if (!fileSystem.FileExists(path))
             {
                 throw new FileNotFoundException(path);
             }

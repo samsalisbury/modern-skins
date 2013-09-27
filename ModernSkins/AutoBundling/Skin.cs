@@ -2,7 +2,7 @@
 {
     public class Skin : DirAutoBundleBase
     {
-        public Skin(string path) : base(path)
+        public Skin(string path, IFileSystem fileSystem) : base(path, fileSystem)
         {
         }
 

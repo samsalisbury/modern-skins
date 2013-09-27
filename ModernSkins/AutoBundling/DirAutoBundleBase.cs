@@ -4,7 +4,7 @@ namespace ModernSkins.AutoBundling
 {
     public abstract class DirAutoBundleBase : AutoBundleBase
     {
-        protected DirAutoBundleBase(string path) : base(path)
+        protected DirAutoBundleBase(string path, IFileSystem fileSystem) : base(path, fileSystem)
         {
             if (!Directory.Exists(path))
             {

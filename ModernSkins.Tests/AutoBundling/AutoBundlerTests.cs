@@ -10,7 +10,7 @@ namespace ModernSkins.Tests.AutoBundling
         [Test]
         public void EnumerateSkins_ShouldListCorrectSkins()
         {
-            var autoBundler = new AutoBundler(TestHelper.SkinsDir);
+            var autoBundler = new AutoBundler(TestHelper.SkinsDir, new FileSystem());
 
             var skins = autoBundler.EnumerateSkins();
 

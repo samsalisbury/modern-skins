@@ -11,7 +11,7 @@ namespace ModernSkins.Tests.AutoBundling
         [TestCase("C:\\Nor\\is\\this")]
         public void Ctor_Throws_DirectoryNotFound_IfPassedNonExistentPath(string nonExistentPath)
         {
-            Assert.Throws<DirectoryNotFoundException>(() => new Skin(nonExistentPath));
+            Assert.Throws<DirectoryNotFoundException>(() => new Skin(nonExistentPath, new FileSystem()));
         }
 
         [TestCase("~/Skins/testskin/styles/other_styles.less")]
@@ -20,7 +20,7 @@ namespace ModernSkins.Tests.AutoBundling
         {
             var filePath = TestHelper.ResolveAppDir(appRelativeFilePath);
 
-            Assert.Throws<DirectoryNotFoundException>(() => new Skin(filePath));
+            Assert.Throws<DirectoryNotFoundException>(() => new Skin(filePath, new FileSystem()));
         }
 
         [TestCase("~/Skins/testskin", "testskin")]
@@ -29,7 +29,7 @@ namespace ModernSkins.Tests.AutoBundling
         {
             var testSkinDir = TestHelper.ResolveAppDir(appRelativeSkinDir);
 
-            var skin = new Skin(testSkinDir);
+            var skin = new Skin(testSkinDir, new FileSystem());
 
             Assert.That(skin.Name, Is.EqualTo(expectedName));
         }

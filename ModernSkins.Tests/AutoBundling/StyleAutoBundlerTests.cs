@@ -12,7 +12,7 @@ namespace ModernSkins.Tests.AutoBundling
         public void GetStyleBundles_ReturnsExpectedBundles(string name, string path)
         {
             var styleDirPath = TestHelper.ResolveAppDir("~/Skins/testskin/styles");
-            var bundler = new StyleAutoBundler(styleDirPath);
+            var bundler = new StyleAutoBundler(styleDirPath, new FileSystem());
 
             var styles = bundler.GetStyleBundles();
 

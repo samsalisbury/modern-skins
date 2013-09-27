@@ -38,7 +38,7 @@ namespace ModernSkins.AutoBundling
 
             var jsBundles = CreateJsBundles(Path.Combine(skinPath, "scripts"), skinName);
 
-            return new Skin(null);
+            return new Skin(null, null);
         }
 
         static object CreateJsBundles(string scriptDirectory, string skinName)

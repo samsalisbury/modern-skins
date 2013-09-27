@@ -13,7 +13,7 @@ namespace ModernSkins.Tests.AutoBundling
         public void GetScriptBundles_ReturnsExpectedBundles(string expectedName, string expectedPath)
         {
             var scriptsPath = TestHelper.ResolveAppDir("~/Skins/testskin/scripts");
-            var bundler = new ScriptAutoBundler(scriptsPath);
+            var bundler = new ScriptAutoBundler(scriptsPath, new FileSystem());
 
             var scripts = bundler.GetScriptBundles();
 

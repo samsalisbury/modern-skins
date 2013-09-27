@@ -1,11 +1,10 @@
 ﻿using System.IO;
-using System.Web.Optimization;
 
 namespace ModernSkins.AutoBundling
 {
     public class ScriptAutoBundle : AutoBundleBase
     {
-        public ScriptAutoBundle(string path) : base(path)
+        public ScriptAutoBundle(string path, IFileSystem fileSystem) : base(path, fileSystem)
         {
             if (!File.Exists(path) && !Directory.Exists(path))
             {
@@ -14,7 +13,5 @@ namespace ModernSkins.AutoBundling
                     path);
             }
         }
-
-        
     }
 }
