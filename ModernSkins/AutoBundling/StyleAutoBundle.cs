@@ -12,5 +12,10 @@ namespace ModernSkins.AutoBundling
         {
             return new StyleBundle(VirtualPath(skinsPath));
         }
+
+        public string[] ListFilesToBundle()
+        {
+            return new[] {Path};
+        }
     }
 }
