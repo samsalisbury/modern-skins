@@ -15,11 +15,9 @@ namespace ModernSkins
 
         public IDictionary<string, Skin> EnumerateSkins()
         {
-            var skinNames = Directory.GetDirectories(_skinsDir).Select(Path.GetFileName).ToList();
+            var skins = Directory.GetDirectories(_skinsDir).Select(dir => new Skin(dir));
 
-            return skinNames.ToDictionary(
-                name => name,
-                name => new Skin {Name = name, Dir = Path.Combine(_skinsDir, name)});
+            return skins.ToDictionary(skin => skin.Name);
         }
     }
 }

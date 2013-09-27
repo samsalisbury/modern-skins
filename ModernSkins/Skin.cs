@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 
 namespace ModernSkins
 {
@@ -12,6 +10,17 @@ namespace ModernSkins
         public string StyleDir
         {
             get { return Path.Combine(Dir, "styles"); }
+        }
+
+        public Skin(string dir)
+        {
+            if (!Directory.Exists(dir))
+            {
+                throw new DirectoryNotFoundException(dir);
+            }
+
+            Dir = dir;
+            Name = Path.GetFileName(dir);
         }
     }
 }
