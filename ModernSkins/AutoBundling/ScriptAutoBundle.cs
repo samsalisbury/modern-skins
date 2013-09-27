@@ -16,7 +16,7 @@ namespace ModernSkins.AutoBundling
 
         public string[] ListFilesToBundle()
         {
-            return new[] {Path};
+            return FileSystem.FileExists(Path) ? new[] {Path} : FileSystem.GetFiles(Path);
         }
     }
 }

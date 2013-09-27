@@ -4,13 +4,13 @@ namespace ModernSkins.AutoBundling
 {
     public abstract class AutoBundleBase
     {
-        readonly IFileSystem _fileSystem;
+        protected readonly IFileSystem FileSystem;
         public string Name { get; set; }
         public string Path { get; set; }
 
         protected AutoBundleBase(string path, IFileSystem fileSystem)
         {
-            _fileSystem = fileSystem;
+            FileSystem = fileSystem;
             Path = path;
             Name = System.IO.Path.GetFileNameWithoutExtension(path);
         }
@@ -20,7 +20,7 @@ namespace ModernSkins.AutoBundling
             var pathWithExtension = Path
                 .Replace(skinsPath + "\\", "~/")
                 .Replace(skinsPath + "/", "~/")
-                .Replace(_fileSystem.DirSeparator, '/');
+                .Replace(FileSystem.DirSeparator, '/');
 
             var pieces = pathWithExtension.Split('/');
             var lastPiece = pieces.Last();
