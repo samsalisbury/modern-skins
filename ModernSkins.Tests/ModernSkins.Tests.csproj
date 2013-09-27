@@ -54,6 +54,11 @@
     <Content Include="Skins\testskin2\styles\some_base_styles2.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\testskin\scripts\js_bundle.js" />
+    <Content Include="Skins\testskin\scripts\bundle_a\js_bundle_a2.js" />
+    <Content Include="Skins\testskin\scripts\bundle_a\js_bundle_a1.js" />
+    <Content Include="Skins\testskin\scripts\bundle_b\js_bundle_b2.js" />
+    <Content Include="Skins\testskin\scripts\bundle_b\js_bundle_b1.js" />
     <Content Include="Skins\testskin\styles\some_base_styles.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -62,7 +67,6 @@
     <Folder Include="Skins\testskin2\images\" />
     <Folder Include="Skins\testskin2\scripts\" />
     <Folder Include="Skins\testskin\images\" />
-    <Folder Include="Skins\testskin\scripts\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

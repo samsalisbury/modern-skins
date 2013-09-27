@@ -31,4 +31,12 @@ namespace ModernSkins.Tests
             Assert.That(styles["some_scss_styles"].FileName, Is.EqualTo("some_scss_styles.scss"));
         }
     }
+
+    public class ScriptBundlerTests
+    {
+        public void EnumerateBundles_ReturnsExpectedBundles()
+        {
+            
+        }
+    }
 }

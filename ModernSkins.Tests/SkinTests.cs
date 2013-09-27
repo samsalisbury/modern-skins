@@ -15,9 +15,9 @@ namespace ModernSkins.Tests
 
         [TestCase("~/Skins/testskin/styles/other_styles.less")]
         [TestCase("~/Skins/testskin2/styles/some_scss_styles2.scss")]
-        public void Ctor_Throws_DirectoryNotFound_IfPassedPathToFile(string appRelativeFileDir)
+        public void Ctor_Throws_DirectoryNotFound_IfPassedPathToFile(string appRelativeFilePath)
         {
-            var filePath = TestHelper.ResolveAppDir(appRelativeFileDir);
+            var filePath = TestHelper.ResolveAppDir(appRelativeFilePath);
 
             Assert.Throws<DirectoryNotFoundException>(() => new Skin(filePath));
         }
