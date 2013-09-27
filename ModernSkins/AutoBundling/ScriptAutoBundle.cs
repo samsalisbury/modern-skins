@@ -6,12 +6,17 @@ namespace ModernSkins.AutoBundling
     {
         public ScriptAutoBundle(string path, IFileSystem fileSystem) : base(path, fileSystem)
         {
-            if (!File.Exists(path) && !Directory.Exists(path))
+            if (!fileSystem.FileExists(path) && !fileSystem.DirExists(path))
             {
                 throw new FileNotFoundException(
                     string.Format("Could not find either a file or directory at {0}", path),
                     path);
             }
+        }
+
+        public string[] ListFilesToBundle()
+        {
+            return new[] {Path};
         }
     }
 }
