@@ -2,9 +2,9 @@
 
 namespace ModernSkins.AutoBundling
 {
-    public abstract class FileBundleBase : BundleBase
+    public abstract class FileAutoBundleBase : AutoBundleBase
     {
-        protected FileBundleBase(string path) : base(path)
+        protected FileAutoBundleBase(string path) : base(path)
         {
             if (!File.Exists(path))
             {

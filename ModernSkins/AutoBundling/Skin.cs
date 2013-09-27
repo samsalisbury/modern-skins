@@ -1,6 +1,6 @@
 ﻿namespace ModernSkins.AutoBundling
 {
-    public class Skin : DirBundleBase
+    public class Skin : DirAutoBundleBase
     {
         public Skin(string path) : base(path)
         {

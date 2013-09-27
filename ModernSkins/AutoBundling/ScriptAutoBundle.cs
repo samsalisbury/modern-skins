@@ -2,9 +2,9 @@
 
 namespace ModernSkins.AutoBundling
 {
-    public class ScriptBundle : BundleBase
+    public class ScriptAutoBundle : AutoBundleBase
     {
-        public ScriptBundle(string path) : base(path)
+        public ScriptAutoBundle(string path) : base(path)
         {
             if (!File.Exists(path) && !Directory.Exists(path))
             {

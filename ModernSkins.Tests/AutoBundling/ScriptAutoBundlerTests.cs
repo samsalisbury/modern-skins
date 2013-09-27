@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace ModernSkins.Tests.AutoBundling
 {
     [TestFixture]
-    public class ScriptBundlerTests
+    public class ScriptAutoBundlerTests
     {
         [TestCase("bundle_a", "~/Skins/testskin/scripts/bundle_a")]
         [TestCase("bundle_b", "~/Skins/testskin/scripts/bundle_b")]
@@ -13,7 +13,7 @@ namespace ModernSkins.Tests.AutoBundling
         public void GetScriptBundles_ReturnsExpectedBundles(string expectedName, string expectedPath)
         {
             var scriptsPath = TestHelper.ResolveAppDir("~/Skins/testskin/scripts");
-            var bundler = new ScriptBundler(scriptsPath);
+            var bundler = new ScriptAutoBundler(scriptsPath);
 
             var scripts = bundler.GetScriptBundles();
 

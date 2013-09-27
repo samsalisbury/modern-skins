@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace ModernSkins.Tests.AutoBundling
 {
     [TestFixture]
-    public class SkinTests
+    public class SkinAutoBundlerTests
     {
         [TestCase("this is not an existent path")]
         [TestCase("C:\\Nor\\is\\this")]

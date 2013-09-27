@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace ModernSkins.Tests.AutoBundling
 {
     [TestFixture]
-    public class StyleBundlerTests
+    public class StyleAutoBundlerTests
     {
         [TestCase("some_base_styles", "~/Skins/testskin/styles/some_base_styles.css")]
         [TestCase("some_scss_styles", "~/Skins/testskin/styles/some_scss_styles.scss")]
@@ -12,7 +12,7 @@ namespace ModernSkins.Tests.AutoBundling
         public void GetStyleBundles_ReturnsExpectedBundles(string name, string path)
         {
             var styleDirPath = TestHelper.ResolveAppDir("~/Skins/testskin/styles");
-            var bundler = new StyleBundler(styleDirPath);
+            var bundler = new StyleAutoBundler(styleDirPath);
 
             var styles = bundler.GetStyleBundles();
 

@@ -4,18 +4,18 @@ using System.Linq;
 
 namespace ModernSkins.AutoBundling
 {
-    public class ScriptBundler
+    public class ScriptAutoBundler
     {
         readonly string _dir;
 
-        public ScriptBundler(string dir)
+        public ScriptAutoBundler(string dir)
         {
             _dir = dir;
         }
 
-        public IDictionary<string, ScriptBundle> GetScriptBundles()
+        public IDictionary<string, ScriptAutoBundle> GetScriptBundles()
         {
-            var bundles = Directory.GetFileSystemEntries(_dir).Select(path => new ScriptBundle(path));
+            var bundles = Directory.GetFileSystemEntries(_dir).Select(path => new ScriptAutoBundle(path));
 
             return bundles.ToDictionary(bundle => bundle.Name);
         }

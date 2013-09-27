@@ -80,15 +80,15 @@
   <ItemGroup>
     <Compile Include="AutoBundling\AutoBundler.cs" />
     <Compile Include="AutoBundling\AutoBundling.cs" />
-    <Compile Include="AutoBundling\BundleBase.cs" />
-    <Compile Include="AutoBundling\DirBundleBase.cs" />
-    <Compile Include="AutoBundling\FileBundleBase.cs" />
+    <Compile Include="AutoBundling\AutoBundleBase.cs" />
+    <Compile Include="AutoBundling\DirAutoBundleBase.cs" />
+    <Compile Include="AutoBundling\FileAutoBundleBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AutoBundling\ScriptBundle.cs" />
-    <Compile Include="AutoBundling\ScriptBundler.cs" />
+    <Compile Include="AutoBundling\ScriptAutoBundle.cs" />
+    <Compile Include="AutoBundling\ScriptAutoBundler.cs" />
     <Compile Include="AutoBundling\Skin.cs" />
-    <Compile Include="AutoBundling\StyleBundle.cs" />
-    <Compile Include="AutoBundling\StyleBundler.cs" />
+    <Compile Include="AutoBundling\StyleAutoBundle.cs" />
+    <Compile Include="AutoBundling\StyleAutoBundler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="BundleTransformer.Configuration.xsd">

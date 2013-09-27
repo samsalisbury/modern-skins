@@ -4,18 +4,18 @@ using System.Linq;
 
 namespace ModernSkins.AutoBundling
 {
-    public class StyleBundler
+    public class StyleAutoBundler
     {
         readonly string _stylesDir;
 
-        public StyleBundler(string stylesDir)
+        public StyleAutoBundler(string stylesDir)
         {
             _stylesDir = stylesDir;
         }
 
-        public IDictionary<string, StyleBundle> GetStyleBundles()
+        public IDictionary<string, StyleAutoBundle> GetStyleBundles()
         {
-            var bundles = Directory.GetFiles(_stylesDir).Select(filePath => new StyleBundle(filePath));
+            var bundles = Directory.GetFiles(_stylesDir).Select(filePath => new StyleAutoBundle(filePath));
 
             return bundles.ToDictionary(bundle => bundle.Name);
         }
