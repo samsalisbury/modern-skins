@@ -44,6 +44,9 @@ namespace ModernSkins.Tests.AutoBundling
         [TestCase("~/Skins/testskin", "other_styles", typeof(StyleAutoBundle), "~/testskin/styles/other_styles")]
         [TestCase("~/Skins/testskin", "some_base_styles", typeof(StyleAutoBundle), "~/testskin/styles/some_base_styles")]
         [TestCase("~/Skins/testskin", "some_scss_styles", typeof(StyleAutoBundle), "~/testskin/styles/some_scss_styles")]
+        //[TestCase("~/Skins/testskin2", "other_styles2", typeof(StyleAutoBundle), "~/testskin2/styles/other_styles2")]
+        //[TestCase("~/Skins/testskin2", "some_base_styles2", typeof(StyleAutoBundle), "~/testskin2/styles/some_base_styles2")]
+        //[TestCase("~/Skins/testskin2", "some_scss_styles2", typeof(StyleAutoBundle), "~/testskin2/styles/some_scss_styles2")]
         public void CreateBundles_ReturnsExpectedBundles(string skinPath, string bundleName, Type bundleType, string virtualPath)
         {
             var basePath = TestHelper.ResolveAppDir("~/Skins");
