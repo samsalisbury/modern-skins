@@ -25,5 +25,15 @@ namespace ModernSkins.Tests.AutoBundling
             Assert.That(skins["testskin2"].Name, Is.EqualTo("testskin2"));
             Assert.That(skins["testskin2"].Path, Is.StringEnding(string.Format(expectedEndDirFormat, TestHelper.SkinsDir, "testskin2")));
         }
+
+        [Test]
+        public void CreateBundles_ShouldCreateExpectedNumberOfBundles()
+        {
+            var autoBundler = new AutoBundler(TestHelper.SkinsDir, new FileSystem());
+
+            var bundles = autoBundler.CreateBundles();
+
+            Assert.That(bundles, Has.Length.EqualTo(7));
+        }
     }
 }

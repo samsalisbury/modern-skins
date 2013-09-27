@@ -1,4 +1,6 @@
-﻿namespace ModernSkins.AutoBundling
+﻿using System.Linq;
+
+namespace ModernSkins.AutoBundling
 {
     public class Skin : DirAutoBundleBase
     {
@@ -6,9 +8,15 @@
         {
         }
 
-        public string StyleDir
+        public AutoBundleBase[] CreateBundles()
         {
-            get { return SubPath("styles"); }
+            var styles = new StyleAutoBundler(SubPath("styles"), FileSystem);
+            var scripts = new ScriptAutoBundler(SubPath("scripts"), FileSystem);
+
+            var styleBundles = styles.GetStyleBundles().Values;
+            var scriptBundles = scripts.GetScriptBundles().Values;
+
+            return styleBundles.Union<AutoBundleBase>(scriptBundles).ToArray();
         }
     }
 }
