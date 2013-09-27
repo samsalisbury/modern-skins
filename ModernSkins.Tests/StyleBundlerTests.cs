@@ -36,7 +36,7 @@ namespace ModernSkins.Tests
     {
         public void EnumerateBundles_ReturnsExpectedBundles()
         {
-            
+            var scriptsPath = TestHelper.ResolveAppDir("~/Skins/testskin/scripts");
         }
     }
 }
