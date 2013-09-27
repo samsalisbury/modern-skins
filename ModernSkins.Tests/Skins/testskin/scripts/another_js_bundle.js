@@ -1,0 +1,1 @@
+﻿function another_js_bundle() {}

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="AutoBundlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScriptBundlerTests.cs" />
     <Compile Include="SkinTests.cs" />
     <Compile Include="StyleBundlerTests.cs" />
     <Compile Include="TestHelper.cs" />
@@ -54,6 +55,7 @@
     <Content Include="Skins\testskin2\styles\some_base_styles2.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\testskin\scripts\another_js_bundle.js" />
     <Content Include="Skins\testskin\scripts\js_bundle.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
