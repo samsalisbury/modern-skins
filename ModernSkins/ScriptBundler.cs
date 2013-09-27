@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ModernSkins
 {
@@ -18,13 +15,22 @@ namespace ModernSkins
 
         public IDictionary<string, ScriptBundle> GetScriptBundles()
         {
-            return null;
+            var bundles = Directory.GetFileSystemEntries(_dir).Select(path => new ScriptBundle(path));
+
+            return bundles.ToDictionary(bundle => bundle.Name);
         }
     }
 
     public class ScriptBundle
     {
-        public string Path { get; set; }
+        public string BundlePath { get; set; }
         public string Name { get; set; }
+
+        public ScriptBundle(string path)
+        {
+            BundlePath = path;
+
+            Name = Path.GetFileNameWithoutExtension(path);
+        }
     }
 }
