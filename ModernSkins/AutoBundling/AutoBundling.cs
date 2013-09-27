@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Optimization;
 using BundleTransformer.Core.Bundles;
 using BundleTransformer.Core.Orderers;
 
-namespace ModernSkins
+namespace ModernSkins.AutoBundling
 {
     public class AutoCssBundleConfig
     {

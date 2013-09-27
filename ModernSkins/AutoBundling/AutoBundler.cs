@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace ModernSkins
+namespace ModernSkins.AutoBundling
 {
     public class AutoBundler
     {

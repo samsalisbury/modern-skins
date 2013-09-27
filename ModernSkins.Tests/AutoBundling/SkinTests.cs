@@ -1,7 +1,8 @@
 using System.IO;
+using ModernSkins.AutoBundling;
 using NUnit.Framework;
 
-namespace ModernSkins.Tests
+namespace ModernSkins.Tests.AutoBundling
 {
     [TestFixture]
     public class SkinTests

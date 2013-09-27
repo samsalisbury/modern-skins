@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ModernSkins.AutoBundling;
 using NUnit.Framework;
 
-namespace ModernSkins.Tests
+namespace ModernSkins.Tests.AutoBundling
 {
     [TestFixture]
     public class StyleBundlerTests
@@ -24,7 +20,7 @@ namespace ModernSkins.Tests
 
             Assert.That(styles.Keys, Contains.Item(name));
             Assert.That(styles[name].Name, Is.EqualTo(name));
-            Assert.That(styles[name].FilePath, Is.EqualTo(TestHelper.ResolveAppDir(path)));
+            Assert.That(styles[name].Path, Is.EqualTo(TestHelper.ResolveAppDir(path)));
         }
     }
 }

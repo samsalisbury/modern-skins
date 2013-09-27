@@ -1,6 +1,7 @@
-﻿using NUnit.Framework;
+﻿using ModernSkins.AutoBundling;
+using NUnit.Framework;
 
-namespace ModernSkins.Tests
+namespace ModernSkins.Tests.AutoBundling
 {
     [TestFixture]
     public class ScriptBundlerTests
@@ -19,7 +20,7 @@ namespace ModernSkins.Tests
             Assert.That(scripts, Has.Count.EqualTo(4));
             Assert.That(scripts.Keys, Contains.Item(expectedName));
             Assert.That(scripts[expectedName].Name, Is.EqualTo(expectedName));
-            Assert.That(scripts[expectedName].BundlePath, Is.EqualTo(TestHelper.ResolveAppDir(expectedPath)));
+            Assert.That(scripts[expectedName].Path, Is.EqualTo(TestHelper.ResolveAppDir(expectedPath)));
         }
     }
 }

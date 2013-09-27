@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace ModernSkins
+namespace ModernSkins.AutoBundling
 {
     public class ScriptBundler
     {
@@ -18,19 +18,6 @@ namespace ModernSkins
             var bundles = Directory.GetFileSystemEntries(_dir).Select(path => new ScriptBundle(path));
 
             return bundles.ToDictionary(bundle => bundle.Name);
-        }
-    }
-
-    public class ScriptBundle
-    {
-        public string BundlePath { get; set; }
-        public string Name { get; set; }
-
-        public ScriptBundle(string path)
-        {
-            BundlePath = path;
-
-            Name = Path.GetFileNameWithoutExtension(path);
         }
     }
 }

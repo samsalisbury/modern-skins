@@ -44,11 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoBundlerTests.cs" />
+    <Compile Include="AutoBundling\AutoBundlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScriptBundlerTests.cs" />
-    <Compile Include="SkinTests.cs" />
-    <Compile Include="StyleBundlerTests.cs" />
+    <Compile Include="AutoBundling\ScriptBundlerTests.cs" />
+    <Compile Include="AutoBundling\SkinTests.cs" />
+    <Compile Include="AutoBundling\StyleBundlerTests.cs" />
     <Compile Include="TestHelper.cs" />
   </ItemGroup>
   <ItemGroup>

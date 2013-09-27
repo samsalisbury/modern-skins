@@ -78,13 +78,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoBundler.cs" />
-    <Compile Include="AutoBundling.cs" />
+    <Compile Include="AutoBundling\AutoBundler.cs" />
+    <Compile Include="AutoBundling\AutoBundling.cs" />
+    <Compile Include="AutoBundling\BundleBase.cs" />
+    <Compile Include="AutoBundling\DirBundleBase.cs" />
+    <Compile Include="AutoBundling\FileBundleBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScriptBundler.cs" />
-    <Compile Include="Skin.cs" />
-    <Compile Include="StyleBundle.cs" />
-    <Compile Include="StyleBundler.cs" />
+    <Compile Include="AutoBundling\ScriptBundle.cs" />
+    <Compile Include="AutoBundling\ScriptBundler.cs" />
+    <Compile Include="AutoBundling\Skin.cs" />
+    <Compile Include="AutoBundling\StyleBundle.cs" />
+    <Compile Include="AutoBundling\StyleBundler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="BundleTransformer.Configuration.xsd">
