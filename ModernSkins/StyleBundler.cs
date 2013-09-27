@@ -15,14 +15,9 @@ namespace ModernSkins
 
         public IDictionary<string, StyleBundle> GetStyleBundles()
         {
-            var files = Directory.GetFiles(_stylesDir).Select(Path.GetFileName);
+            var bundles = Directory.GetFiles(_stylesDir).Select(filePath => new StyleBundle(filePath));
 
-            return files.ToDictionary(Path.GetFileNameWithoutExtension,
-                file => new StyleBundle
-                        {
-                            Name = Path.GetFileNameWithoutExtension(file),
-                            FileName = file
-                        });
+            return bundles.ToDictionary(bundle => bundle.Name);
         }
     }
 }

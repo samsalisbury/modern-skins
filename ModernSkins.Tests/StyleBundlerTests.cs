@@ -10,8 +10,10 @@ namespace ModernSkins.Tests
     [TestFixture]
     public class StyleBundlerTests
     {
-        [Test]
-        public void EnumerateBundles_ReturnsExpectedBundles()
+        [TestCase("some_base_styles", "~/Skins/testskin/styles/some_base_styles.css")]
+        [TestCase("some_scss_styles", "~/Skins/testskin/styles/some_scss_styles.scss")]
+        [TestCase("other_styles", "~/Skins/testskin/styles/other_styles.less")]
+        public void GetStyleBundles_ReturnsExpectedBundles(string name, string path)
         {
             var styleDirPath = TestHelper.ResolveAppDir("~/Skins/testskin/styles");
             var bundler = new StyleBundler(styleDirPath);
@@ -19,16 +21,10 @@ namespace ModernSkins.Tests
             var styles = bundler.GetStyleBundles();
 
             Assert.That(styles, Has.Count.EqualTo(3));
-            Assert.That(styles.Keys, Contains.Item("other_styles"));
-            Assert.That(styles.Keys, Contains.Item("some_base_styles"));
-            Assert.That(styles.Keys, Contains.Item("some_scss_styles"));
 
-            Assert.That(styles["other_styles"].Name, Is.EqualTo("other_styles"));
-            Assert.That(styles["other_styles"].FileName, Is.EqualTo("other_styles.less"));
-            Assert.That(styles["some_base_styles"].Name, Is.EqualTo("some_base_styles"));
-            Assert.That(styles["some_base_styles"].FileName, Is.EqualTo("some_base_styles.css"));
-            Assert.That(styles["some_scss_styles"].Name, Is.EqualTo("some_scss_styles"));
-            Assert.That(styles["some_scss_styles"].FileName, Is.EqualTo("some_scss_styles.scss"));
+            Assert.That(styles.Keys, Contains.Item(name));
+            Assert.That(styles[name].Name, Is.EqualTo(name));
+            Assert.That(styles[name].FilePath, Is.EqualTo(TestHelper.ResolveAppDir(path)));
         }
     }
 }

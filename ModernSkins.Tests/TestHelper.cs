@@ -15,7 +15,18 @@ namespace ModernSkins.Tests
 
         public static string ResolveAppDir(string relativeDirectory)
         {
-            return Path.Combine(BaseDir, relativeDirectory.Replace("~/", ""));
+            if (!relativeDirectory.StartsWith("~/"))
+            {
+                throw new ArgumentException("TestHelper: app relative directories must start with \"~/\"");
+            }
+
+            // Hacky, should work on Windows/Mac/Linux
+            relativeDirectory = relativeDirectory
+                .Replace("~/", "")
+                .Replace('/', Path.DirectorySeparatorChar)
+                .Replace('\\', Path.DirectorySeparatorChar);
+
+            return Path.Combine(BaseDir, relativeDirectory);
         }
     }
 }
