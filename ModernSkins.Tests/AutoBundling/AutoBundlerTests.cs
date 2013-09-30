@@ -36,11 +36,17 @@ namespace ModernSkins.Tests.AutoBundling
             fs.AddFiles("/base/my-app/SkinsDir/skin1/scripts/bundle_a[script_dirs.js,are_single_bundles.js,ok.coffee]");
             fs.AddFiles("/base/my-app/SkinsDir/skin1/scripts/bundle_b[script_dirs.js,are_single_bundles.js,ok.coffee]");
 
+            fs.AddFiles("/base/my-app/SkinsDir/skin2/styles[base_styles.css,other_styles.scss,my_styles.less]");
+            fs.AddFiles("/base/my-app/SkinsDir/skin2/styles/lib[dirs,in,styles,dir,are,not,bundles]");
+            fs.AddFiles("/base/my-app/SkinsDir/skin2/scripts[all.js,scripts.coffee,are.js,bundles.js]");
+            fs.AddFiles("/base/my-app/SkinsDir/skin2/scripts/bundle_a[script_dirs.js,are_single_bundles.js,ok.coffee]");
+            fs.AddFiles("/base/my-app/SkinsDir/skin2/scripts/bundle_b[script_dirs.js,are_single_bundles.js,ok.coffee]");
+
             var autoBundler = new AutoBundler("/base/my-app/SkinsDir", fs);
 
             var bundles = autoBundler.CreateBundles();
 
-            Assert.That(bundles, Has.Length.EqualTo(9));
+            Assert.That(bundles, Has.Length.EqualTo(18));
         }
     }
 }
