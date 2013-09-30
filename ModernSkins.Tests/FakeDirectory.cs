@@ -22,7 +22,9 @@ namespace ModernSkins.Tests
         {
             var parts = Split(name);
 
-            var dir = new FakeDirectory(parts[0]);
+            var sameName = (FakeDirectory) Children.SingleOrDefault(child => child.Name == parts[0]);
+
+            var dir = sameName ?? new FakeDirectory(parts[0]);
             Children.Add(dir);
             if (parts.Length == 2)
             {

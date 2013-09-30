@@ -36,15 +36,18 @@ namespace ModernSkins.Tests
         {
             var fs = new FakeFileSystem();
 
-            var dir1 = fs.AddDirectory("path/that/is/duplicated");
-            var dir2 = fs.AddDirectory("path/that/is/duplicated/thing-inside");
-            var dir3 = fs.AddDirectory("path/that/is/cool");
-            var dir4 = fs.AddDirectory("paht/that/is/the/other/one");
+            fs.AddDirectory("path/that/is/duplicated");
+            fs.AddDirectory("path/that/is/duplicated/thing-inside");
+            fs.AddDirectory("path/that/is/cool");
+            fs.AddDirectory("path/that/is/the/other/one");
 
             Assert.That(fs.GetDirectories("path/that/is"), Has.Length.EqualTo(3));
             Assert.That(fs.GetDirectories("path/that/is")[0], Is.EqualTo("path/that/is/duplicated"));
             Assert.That(fs.GetDirectories("path/that/is")[1], Is.EqualTo("path/that/is/cool"));
             Assert.That(fs.GetDirectories("path/that/is")[2], Is.EqualTo("path/that/is/the"));
+
+            Assert.That(fs.GetDirectories("path/that"), Has.Length.EqualTo(1));
+            Assert.That(fs.GetDirectories("path/that")[0], Is.EqualTo("path/that/is"));
         }
 
         [Test]
