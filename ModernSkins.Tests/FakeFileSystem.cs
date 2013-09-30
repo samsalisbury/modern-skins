@@ -43,5 +43,14 @@ namespace ModernSkins.Tests
         {
             return Root.Dir(path).Children.Select(dir => path + "/" + dir.Name).ToArray();
         }
+
+        public void AddFiles(string filesPath)
+        {
+            var parts = filesPath.Split(new[] {'['});
+            var dir = AddDirectory(parts[0]);
+            var files = parts[1].Substring(0, parts[1].Length - 1).Split(',');
+
+            dir.AddFiles(files);
+        }
     }
 }

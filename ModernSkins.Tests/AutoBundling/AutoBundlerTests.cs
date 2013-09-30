@@ -33,7 +33,8 @@ namespace ModernSkins.Tests.AutoBundling
             var skin1 = fs.AddDirectory("Skins/skin1");
             var skin2 = fs.AddDirectory("Skins/skin2");
 
-
+            skin1.AddDirectory("scripts").AddFiles("script1.js", "script2.js").AddDirectory("my_bundle").AddFiles("bundle_file.js");
+            skin1.AddDirectory("styles").AddFiles("style1.scss", "style2.css").AddDirectory("not_a_bundle");
 
             var autoBundler = new AutoBundler(TestHelper.SkinsDir, new FileSystem());
 

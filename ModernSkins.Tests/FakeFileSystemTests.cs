@@ -124,5 +124,21 @@ namespace ModernSkins.Tests
             Assert.That(result[4], Is.EqualTo("basedir/" + "file2"));
             Assert.That(result[5], Is.EqualTo("basedir/" + "file3"));
         }
+
+        [Test]
+        public void AddFiles_CreatesExpectedFiles()
+        {
+            var fs = new FakeFileSystem();
+
+            fs.AddFiles("/base/dir/other/[file1.js,file2.coffee,file3.css,file4.jpg]");
+
+            var createdFiles = fs.GetFiles("/base/dir/other");
+
+            Assert.That(createdFiles, Has.Length.EqualTo(4));
+            Assert.That(createdFiles[0], Is.EqualTo("/base/dir/other/file1.js"));
+            Assert.That(createdFiles[1], Is.EqualTo("/base/dir/other/file2.coffee"));
+            Assert.That(createdFiles[2], Is.EqualTo("/base/dir/other/file3.css"));
+            Assert.That(createdFiles[3], Is.EqualTo("/base/dir/other/file4.jpg"));
+        }
     }
 }
