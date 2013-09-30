@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 
 namespace ModernSkins.AutoBundling
 {
@@ -15,6 +16,11 @@ namespace ModernSkins.AutoBundling
         protected string SubPath(string subPath)
         {
             return System.IO.Path.Combine(Path, subPath);
+        }
+
+        protected bool SubPathExists(string subPath)
+        {
+            return Directory.EnumerateFileSystemEntries(Path).Contains(SubPath(subPath));
         }
     }
 }

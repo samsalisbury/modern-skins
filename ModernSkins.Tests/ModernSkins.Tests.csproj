@@ -110,7 +110,9 @@
     <None Include="Skins\testskin2\styles\includes2\included_file2.scss">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Skins\testskin2\styles\other_styles2.less" />
+    <None Include="Skins\testskin2\styles\other_styles2.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Skins\testskin2\styles\some_scss_styles2.scss">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

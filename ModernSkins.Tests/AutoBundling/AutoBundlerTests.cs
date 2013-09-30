@@ -33,7 +33,7 @@ namespace ModernSkins.Tests.AutoBundling
 
             var bundles = autoBundler.CreateBundles();
 
-            Assert.That(bundles, Has.Length.EqualTo(7));
+            Assert.That(bundles, Has.Length.EqualTo(10));
         }
     }
 }

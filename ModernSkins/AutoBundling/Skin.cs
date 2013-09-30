@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace ModernSkins.AutoBundling
 {
@@ -10,13 +10,21 @@ namespace ModernSkins.AutoBundling
 
         public AutoBundleBase[] CreateBundles()
         {
-            var styles = new StyleAutoBundler(SubPath("styles"), FileSystem);
-            var scripts = new ScriptAutoBundler(SubPath("scripts"), FileSystem);
+            var list = new List<AutoBundleBase>();
 
-            var styleBundles = styles.GetStyleBundles().Values;
-            var scriptBundles = scripts.GetScriptBundles().Values;
+            if (SubPathExists("styles"))
+            {
+                var styles = new StyleAutoBundler(SubPath("styles"), FileSystem);
+                list.AddRange(styles.GetStyleBundles().Values);
+            }
 
-            return styleBundles.Union<AutoBundleBase>(scriptBundles).ToArray();
+            if (SubPathExists("scripts"))
+            {
+                var scripts = new ScriptAutoBundler(SubPath("scripts"), FileSystem);
+                list.AddRange(scripts.GetScriptBundles().Values);
+            }
+            
+            return list.ToArray();
         }
     }
 }
