@@ -6,21 +6,24 @@ namespace ModernSkins.Tests.AutoBundling
     [TestFixture]
     public class ScriptAutoBundlerTests
     {
-        [TestCase("bundle_a", "~/Skins/testskin/scripts/bundle_a")]
-        [TestCase("bundle_b", "~/Skins/testskin/scripts/bundle_b")]
-        [TestCase("js_bundle", "~/Skins/testskin/scripts/js_bundle.js")]
-        [TestCase("another_js_bundle", "~/Skins/testskin/scripts/another_js_bundle.js")]
-        public void GetScriptBundles_ReturnsExpectedBundles(string expectedName, string expectedPath)
+        [TestCase("bundle_a", "/scripts/bundle_a/a_file.js", "/scripts/bundle_a")]
+        [TestCase("bundle_b", "/scripts/bundle_b/a_file.js", "/scripts/bundle_b")]
+        [TestCase("js_bundle", "/scripts/js_bundle.coffee", "/scripts/js_bundle.coffee")]
+        [TestCase("another_js_bundle", "/scripts/another_js_bundle.js", "/scripts/another_js_bundle.js")]
+        public void GetScriptBundles_ReturnsExpectedBundles(string expectedName, string fileToCreate, string expectedPath)
         {
-            var scriptsPath = TestHelper.ResolveAppDir("~/Skins/testskin/scripts");
-            var bundler = new ScriptAutoBundler(scriptsPath, new FileSystem());
+            var fs = new FakeFileSystem();
+            fs.AddFile(fileToCreate);
+
+            const string scriptsPath = "/scripts";
+
+            var bundler = new ScriptAutoBundler(scriptsPath, fs);
 
             var scripts = bundler.GetScriptBundles();
 
-            Assert.That(scripts, Has.Count.EqualTo(4));
             Assert.That(scripts.Keys, Contains.Item(expectedName));
             Assert.That(scripts[expectedName].Name, Is.EqualTo(expectedName));
-            Assert.That(scripts[expectedName].Path, Is.EqualTo(TestHelper.ResolveAppDir(expectedPath)));
+            Assert.That(scripts[expectedName].Path, Is.EqualTo(expectedPath));
         }
     }
 }

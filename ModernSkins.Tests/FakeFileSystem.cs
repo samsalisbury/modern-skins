@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
 using ModernSkins.AutoBundling;
 
 namespace ModernSkins.Tests
@@ -66,6 +68,15 @@ namespace ModernSkins.Tests
             }
 
             return p1 + DirSeparator + p2;
+        }
+
+        public void AddFile(string path)
+        {
+            var fileNameSeparatorIndex = path.LastIndexOf(DirSeparator);
+            var fileName = path.Substring(fileNameSeparatorIndex + 1);
+            var dirPath = path.Substring(0, fileNameSeparatorIndex);
+
+            AddDirectory(dirPath).AddChild(new FakeFile(fileName));
         }
     }
 }

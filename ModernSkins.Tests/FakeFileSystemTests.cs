@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.ComponentModel;
+using System.Linq;
 using NUnit.Framework;
 
 namespace ModernSkins.Tests
@@ -139,6 +140,19 @@ namespace ModernSkins.Tests
             Assert.That(createdFiles[1], Is.EqualTo("/base/dir/other/file2.coffee"));
             Assert.That(createdFiles[2], Is.EqualTo("/base/dir/other/file3.css"));
             Assert.That(createdFiles[3], Is.EqualTo("/base/dir/other/file4.jpg"));
+        }
+
+        [Test]
+        public void AddFile_CreatesExpectedFile()
+        {
+            var fs = new FakeFileSystem();
+
+            fs.AddFile("/some/dir.path/and/then/a/file");
+
+            var createdFiles = fs.GetFiles("/some/dir.path/and/then/a");
+
+            Assert.That(createdFiles.Length, Is.EqualTo(1));
+            Assert.That(createdFiles[0], Is.EqualTo("/some/dir.path/and/then/a/file"));
         }
 
         [TestCase("/part1", "part2")]
