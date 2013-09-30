@@ -10,6 +10,7 @@ namespace ModernSkins.AutoBundling
         string[] GetDirectories(string path);
         string[] GetFiles(string path);
         string[] GetFileSystemEntries(string path);
+        string CombinePaths(string path, string subPath);
     }
 
     public class FileSystem : IFileSystem
@@ -38,6 +39,11 @@ namespace ModernSkins.AutoBundling
         public string[] GetFileSystemEntries(string path)
         {
             return Directory.GetFileSystemEntries(path);
+        }
+
+        public string CombinePaths(string path, string subPath)
+        {
+            return Path.Combine(path, subPath);
         }
     }
 }

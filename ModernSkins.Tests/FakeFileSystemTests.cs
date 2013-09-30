@@ -140,5 +140,18 @@ namespace ModernSkins.Tests
             Assert.That(createdFiles[2], Is.EqualTo("/base/dir/other/file3.css"));
             Assert.That(createdFiles[3], Is.EqualTo("/base/dir/other/file4.jpg"));
         }
+
+        [TestCase("/part1", "part2")]
+        [TestCase("/part1/", "part2")]
+        [TestCase("/part1", "/part2")]
+        [TestCase("/part1/", "/part2")]
+        public void CombinePaths_CombinesPathsAsExpected(string p1, string p2)
+        {
+            var fs = new FakeFileSystem();
+
+            var result = fs.CombinePaths(p1, p2);
+
+            Assert.That(result, Is.EqualTo("/part1/part2"));
+        }
     }
 }

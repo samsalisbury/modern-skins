@@ -7,7 +7,7 @@ namespace ModernSkins.AutoBundling
     {
         protected DirAutoBundleBase(string path, IFileSystem fileSystem) : base(path, fileSystem)
         {
-            if (!Directory.Exists(path))
+            if (!FileSystem.DirExists(path))
             {
                 throw new DirectoryNotFoundException(path);
             }
@@ -15,12 +15,12 @@ namespace ModernSkins.AutoBundling
 
         protected string SubPath(string subPath)
         {
-            return System.IO.Path.Combine(Path, subPath);
+            return FileSystem.CombinePaths(Path, subPath);
         }
 
         protected bool SubPathExists(string subPath)
         {
-            return Directory.EnumerateFileSystemEntries(Path).Contains(SubPath(subPath));
+            return FileSystem.GetFileSystemEntries(Path).Contains(SubPath(subPath));
         }
     }
 }

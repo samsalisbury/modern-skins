@@ -1,23 +1,17 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace ModernSkins.AutoBundling
 {
-    public class ScriptAutoBundler
+    public class ScriptAutoBundler : DirAutoBundleBase
     {
-        readonly string _dir;
-        readonly IFileSystem _fileSystem;
-
-        public ScriptAutoBundler(string dir, IFileSystem fileSystem)
+        public ScriptAutoBundler(string dir, IFileSystem fileSystem) : base(dir, fileSystem)
         {
-            _dir = dir;
-            _fileSystem = fileSystem;
         }
 
         public IDictionary<string, ScriptAutoBundle> GetScriptBundles()
         {
-            var bundles = Directory.GetFileSystemEntries(_dir).Select(path => new ScriptAutoBundle(path, _fileSystem));
+            var bundles = FileSystem.GetFileSystemEntries(Path).Select(path => new ScriptAutoBundle(path, FileSystem));
 
             return bundles.ToDictionary(bundle => bundle.Name);
         }

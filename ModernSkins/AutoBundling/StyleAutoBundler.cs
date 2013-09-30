@@ -1,23 +1,17 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace ModernSkins.AutoBundling
 {
-    public class StyleAutoBundler
+    public class StyleAutoBundler : DirAutoBundleBase
     {
-        readonly string _stylesDir;
-        readonly IFileSystem _fileSystem;
-
-        public StyleAutoBundler(string stylesDir, IFileSystem fileSystem)
+        public StyleAutoBundler(string stylesDir, IFileSystem fileSystem) : base(stylesDir, fileSystem)
         {
-            _stylesDir = stylesDir;
-            _fileSystem = fileSystem;
         }
 
         public IDictionary<string, StyleAutoBundle> GetStyleBundles()
         {
-            var bundles = Directory.GetFiles(_stylesDir).Select(filePath => new StyleAutoBundle(filePath, _fileSystem));
+            var bundles = FileSystem.GetFiles(Path).Select(filePath => new StyleAutoBundle(filePath, FileSystem));
 
             return bundles.ToDictionary(bundle => bundle.Name);
         }
