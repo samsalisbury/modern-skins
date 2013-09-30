@@ -11,7 +11,7 @@ namespace ModernSkins.AutoBundling
 
         public IDictionary<string, StyleAutoBundle> GetStyleBundles()
         {
-            var bundles = FileSystem.GetFiles(Path).Select(filePath => new StyleAutoBundle(filePath, FileSystem));
+            var bundles = FileSystem.GetFiles(FileSystemPath).Select(filePath => new StyleAutoBundle(filePath, FileSystem));
 
             return bundles.ToDictionary(bundle => bundle.Name);
         }

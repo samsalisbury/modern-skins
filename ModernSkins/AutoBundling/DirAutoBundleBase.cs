@@ -15,12 +15,12 @@ namespace ModernSkins.AutoBundling
 
         protected string SubPath(string subPath)
         {
-            return FileSystem.CombinePaths(Path, subPath);
+            return FileSystem.CombinePaths(FileSystemPath, subPath);
         }
 
         protected bool SubPathExists(string subPath)
         {
-            return FileSystem.GetFileSystemEntries(Path).Contains(SubPath(subPath));
+            return FileSystem.GetFileSystemEntries(FileSystemPath).Contains(SubPath(subPath));
         }
     }
 }

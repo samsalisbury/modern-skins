@@ -20,7 +20,7 @@ namespace ModernSkins.Tests.AutoBundling
 
             Assert.That(styles.Keys, Contains.Item(name));
             Assert.That(styles[name].Name, Is.EqualTo(name));
-            Assert.That(styles[name].Path, Is.EqualTo(TestHelper.ResolveAppDir(path)));
+            Assert.That(styles[name].FileSystemPath, Is.EqualTo(TestHelper.ResolveAppDir(path)));
         }
     }
 }

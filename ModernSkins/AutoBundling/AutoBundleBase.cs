@@ -6,18 +6,18 @@ namespace ModernSkins.AutoBundling
     {
         protected readonly IFileSystem FileSystem;
         public string Name { get; set; }
-        public string Path { get; set; }
+        public string FileSystemPath { get; set; }
 
         protected AutoBundleBase(string path, IFileSystem fileSystem)
         {
             FileSystem = fileSystem;
-            Path = path;
+            FileSystemPath = path;
             Name = System.IO.Path.GetFileNameWithoutExtension(path);
         }
 
         public string VirtualPath(string skinsPath)
         {
-            var pathWithExtension = Path
+            var pathWithExtension = FileSystemPath
                 .Replace(skinsPath + "\\", "~/")
                 .Replace(skinsPath + "/", "~/")
                 .Replace(FileSystem.DirSeparator, '/');

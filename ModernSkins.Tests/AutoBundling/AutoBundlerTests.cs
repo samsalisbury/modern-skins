@@ -23,9 +23,9 @@ namespace ModernSkins.Tests.AutoBundling
             Assert.That(skins.Keys, Contains.Item("testskin"));
             Assert.That(skins.Keys, Contains.Item("testskin2"));
             Assert.That(skins["testskin"].Name, Is.EqualTo("testskin"));
-            Assert.That(skins["testskin"].Path, Is.EqualTo(fs.CombinePaths(skinsPath, "testskin")));
+            Assert.That(skins["testskin"].FileSystemPath, Is.EqualTo(fs.CombinePaths(skinsPath, "testskin")));
             Assert.That(skins["testskin2"].Name, Is.EqualTo("testskin2"));
-            Assert.That(skins["testskin2"].Path, Is.EqualTo(fs.CombinePaths(skinsPath, "testskin2")));
+            Assert.That(skins["testskin2"].FileSystemPath, Is.EqualTo(fs.CombinePaths(skinsPath, "testskin2")));
         }
 
         [Test]

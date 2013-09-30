@@ -15,7 +15,7 @@ namespace ModernSkins.AutoBundling
 
         public string[] ListFilesToBundle()
         {
-            return new[] {Path};
+            return new[] {FileSystemPath};
         }
     }
 }

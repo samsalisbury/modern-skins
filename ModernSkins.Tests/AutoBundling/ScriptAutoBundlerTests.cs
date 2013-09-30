@@ -23,7 +23,7 @@ namespace ModernSkins.Tests.AutoBundling
 
             Assert.That(scripts.Keys, Contains.Item(expectedName));
             Assert.That(scripts[expectedName].Name, Is.EqualTo(expectedName));
-            Assert.That(scripts[expectedName].Path, Is.EqualTo(expectedPath));
+            Assert.That(scripts[expectedName].FileSystemPath, Is.EqualTo(expectedPath));
         }
     }
 }

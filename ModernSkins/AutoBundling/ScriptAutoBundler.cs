@@ -11,7 +11,7 @@ namespace ModernSkins.AutoBundling
 
         public IDictionary<string, ScriptAutoBundle> GetScriptBundles()
         {
-            var bundles = FileSystem.GetFileSystemEntries(Path).Select(path => new ScriptAutoBundle(path, FileSystem));
+            var bundles = FileSystem.GetFileSystemEntries(FileSystemPath).Select(path => new ScriptAutoBundle(path, FileSystem));
 
             return bundles.ToDictionary(bundle => bundle.Name);
         }
