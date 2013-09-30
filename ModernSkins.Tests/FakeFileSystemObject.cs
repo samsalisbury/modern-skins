@@ -13,5 +13,17 @@
         {
             return Name.GetHashCode();
         }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as FakeFileSystemObject;
+
+            if (other == null)
+            {
+                return false;
+            }
+
+            return other.Name == Name;
+        }
     }
 }

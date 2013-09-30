@@ -29,6 +29,12 @@ namespace ModernSkins.Tests.AutoBundling
         [Test]
         public void CreateBundles_ShouldCreateExpectedNumberOfBundles()
         {
+            var fs = new FakeFileSystem();
+            var skin1 = fs.AddDirectory("Skins/skin1");
+            var skin2 = fs.AddDirectory("Skins/skin2");
+
+
+
             var autoBundler = new AutoBundler(TestHelper.SkinsDir, new FileSystem());
 
             var bundles = autoBundler.CreateBundles();

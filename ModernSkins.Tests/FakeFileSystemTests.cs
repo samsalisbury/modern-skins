@@ -32,6 +32,22 @@ namespace ModernSkins.Tests
         }
 
         [Test]
+        public void AddDirectory_MergesDirectories()
+        {
+            var fs = new FakeFileSystem();
+
+            var dir1 = fs.AddDirectory("path/that/is/duplicated");
+            var dir2 = fs.AddDirectory("path/that/is/duplicated/thing-inside");
+            var dir3 = fs.AddDirectory("path/that/is/cool");
+            var dir4 = fs.AddDirectory("paht/that/is/the/other/one");
+
+            Assert.That(fs.GetDirectories("path/that/is"), Has.Length.EqualTo(3));
+            Assert.That(fs.GetDirectories("path/that/is")[0], Is.EqualTo("path/that/is/duplicated"));
+            Assert.That(fs.GetDirectories("path/that/is")[1], Is.EqualTo("path/that/is/cool"));
+            Assert.That(fs.GetDirectories("path/that/is")[2], Is.EqualTo("path/that/is/the"));
+        }
+
+        [Test]
         public void AddDirectory_AddFiles_CreatesExpectedFiles_NotDirectories()
         {
             var fs = new FakeFileSystem();
