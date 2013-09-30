@@ -1,5 +1,4 @@
-﻿using System.IO;
-using ModernSkins.AutoBundling;
+﻿using ModernSkins.AutoBundling;
 using NUnit.Framework;
 
 namespace ModernSkins.Tests.AutoBundling
@@ -10,20 +9,23 @@ namespace ModernSkins.Tests.AutoBundling
         [Test]
         public void EnumerateSkins_ShouldListCorrectSkins()
         {
-            var autoBundler = new AutoBundler(TestHelper.SkinsDir, new FileSystem());
+            var fs = new FakeFileSystem();
+            fs.AddDirectory("/my-app/Skins/testskin");
+            fs.AddDirectory("/my-app/Skins/testskin2");
+
+            const string skinsPath = "/my-app/Skins";
+
+            var autoBundler = new AutoBundler(skinsPath, fs);
 
             var skins = autoBundler.EnumerateSkins();
 
             Assert.That(skins, Has.Count.EqualTo(2));
             Assert.That(skins.Keys, Contains.Item("testskin"));
             Assert.That(skins.Keys, Contains.Item("testskin2"));
-
-            var expectedEndDirFormat = "{0}" + Path.DirectorySeparatorChar + "{1}";
-
             Assert.That(skins["testskin"].Name, Is.EqualTo("testskin"));
-            Assert.That(skins["testskin"].Path, Is.StringEnding(string.Format(expectedEndDirFormat, TestHelper.SkinsDir, "testskin")));
+            Assert.That(skins["testskin"].Path, Is.EqualTo(fs.CombinePaths(skinsPath, "testskin")));
             Assert.That(skins["testskin2"].Name, Is.EqualTo("testskin2"));
-            Assert.That(skins["testskin2"].Path, Is.StringEnding(string.Format(expectedEndDirFormat, TestHelper.SkinsDir, "testskin2")));
+            Assert.That(skins["testskin2"].Path, Is.EqualTo(fs.CombinePaths(skinsPath, "testskin2")));
         }
 
         [Test]
