@@ -10,11 +10,9 @@ namespace ModernSkins.Tests
         public void AddDirectory_DirExists()
         {
             var fs = new FakeFileSystem();
-
             const string dirName = "MyApp/Skins/skin1";
 
             fs.AddDirectory(dirName);
-            //scriptsDir.AddFiles("myscript1.js", "otherscripts2.js");
 
             Assert.True(fs.DirExists(dirName));
         }
@@ -50,6 +48,62 @@ namespace ModernSkins.Tests
             Assert.False(fs.DirExists(filePaths[0]));
             Assert.False(fs.DirExists(filePaths[1]));
             Assert.False(fs.DirExists(filePaths[2]));
+        }
+
+        [Test]
+        public void GetDirectories_ReturnsExpectedDirectories()
+        {
+            var fs = new FakeFileSystem();
+            var baseDir = fs.AddDirectory("basedir");
+            baseDir.AddDirectory("dir1");
+            baseDir.AddDirectory("dir2");
+            baseDir.AddDirectory("dir3");
+            baseDir.AddFiles("file1", "file2");
+
+            var result = fs.GetDirectories("basedir");
+
+            Assert.That(result, Has.Length.EqualTo(3));
+            Assert.That(result[0], Is.EqualTo("basedir/" + "dir1"));
+            Assert.That(result[1], Is.EqualTo("basedir/" + "dir2"));
+            Assert.That(result[2], Is.EqualTo("basedir/" + "dir3"));
+        }
+
+        [Test]
+        public void GetFiles_ReturnsExpectedFiles()
+        {
+            var fs = new FakeFileSystem();
+            var baseDir = fs.AddDirectory("basedir");
+            baseDir.AddDirectory("dir1");
+            baseDir.AddDirectory("dir2");
+            baseDir.AddFiles("file1", "file2", "file3");
+
+            var result = fs.GetFiles("basedir");
+
+            Assert.That(result, Has.Length.EqualTo(3));
+            Assert.That(result[0], Is.EqualTo("basedir/" + "file1"));
+            Assert.That(result[1], Is.EqualTo("basedir/" + "file2"));
+            Assert.That(result[2], Is.EqualTo("basedir/" + "file3"));
+        }
+
+        [Test]
+        public void GetFileSystemEntries_ReturnsAllEntries()
+        {
+            var fs = new FakeFileSystem();
+            var baseDir = fs.AddDirectory("basedir");
+            baseDir.AddDirectory("dir1");
+            baseDir.AddDirectory("dir2");
+            baseDir.AddDirectory("dir3");
+            baseDir.AddFiles("file1", "file2", "file3");
+
+            var result = fs.GetFileSystemEntries("basedir");
+
+            Assert.That(result, Has.Length.EqualTo(6));
+            Assert.That(result[0], Is.EqualTo("basedir/" + "dir1"));
+            Assert.That(result[1], Is.EqualTo("basedir/" + "dir2"));
+            Assert.That(result[2], Is.EqualTo("basedir/" + "dir3"));
+            Assert.That(result[3], Is.EqualTo("basedir/" + "file1"));
+            Assert.That(result[4], Is.EqualTo("basedir/" + "file2"));
+            Assert.That(result[5], Is.EqualTo("basedir/" + "file3"));
         }
     }
 }
