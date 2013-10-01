@@ -1,4 +1,5 @@
 ﻿using System.Web.Optimization;
+using System.Web.UI.WebControls;
 using ModernSkins.AutoBundling;
 using NUnit.Framework;
 
@@ -28,6 +29,24 @@ namespace ModernSkins.Tests.AutoBundling
             Assert.That(styles[name].FileSystemPath, Is.EqualTo(fileToCreate));
         }
 
+        [TestCase("same-name.less", "same-name.scss")]
+        [TestCase("same-name.less", "same-name.sass")]
+        [TestCase("same-name.scss", "same-name.less")]
+        [TestCase("same-name.scss", "same-name.sass")]
+        [TestCase("same-name.sass", "same-name.less")]
+        [TestCase("same-name.sass", "same-name.scss")]
+        public void GetStyleBundles_ShouldThrow_WhenMultipleBundlesHaveTheSameNameUnlessItsCss(string file1, string file2)
+        {
+            const string styleDirPath = "/c/app/styles";
+            var fs = new FakeUnixFileSystem();
+            var dir = fs.AddDirectory(styleDirPath);
+            dir.AddFiles(file1, file2);
+
+            var bundler = new StyleAutoBundler(styleDirPath, fs);
+
+            Assert.Throws<StyleBundleWithSameNameException>(() => bundler.GetStyleBundles());
+        }
+
         [Test]
         public void GetStyleBundles_ShouldIgnoreCssFilesIfTheyMatchLessFileNames()
         {
@@ -45,6 +64,25 @@ namespace ModernSkins.Tests.AutoBundling
             Assert.That(bundles, Has.Count.EqualTo(2));
             Assert.That(bundles["my_style"].ListFilesToBundle()[0], Is.EqualTo("C:\\MyApp\\Skins\\MySkin\\styles\\my_style.less"));
             Assert.That(bundles["my_other_style"].ListFilesToBundle()[0], Is.EqualTo("C:\\MyApp\\Skins\\MySkin\\styles\\my_other_style.less"));
+        }
+
+        [Test]
+        public void GetStyleBundles_ShouldIgnoreCssFilesIfTheyMatchScssFileNames()
+        {
+            const string styleDirPath = "C:\\MyApp\\Skins\\MySkin\\styles";
+
+            var fs = new FakeDosFileSystem();
+            var dir = fs.AddDirectory(styleDirPath);
+            dir.AddFiles("my_style.css", "my_other_style.css");
+            dir.AddFiles("my_style.scss", "my_other_style.scss");
+
+            var bundler = new StyleAutoBundler(styleDirPath, fs);
+
+            var bundles = bundler.GetStyleBundles();
+
+            Assert.That(bundles, Has.Count.EqualTo(2));
+            Assert.That(bundles["my_style"].ListFilesToBundle()[0], Is.EqualTo("C:\\MyApp\\Skins\\MySkin\\styles\\my_style.scss"));
+            Assert.That(bundles["my_other_style"].ListFilesToBundle()[0], Is.EqualTo("C:\\MyApp\\Skins\\MySkin\\styles\\my_other_style.scss"));
         }
     }
 }
