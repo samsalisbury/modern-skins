@@ -21,8 +21,13 @@ namespace ModernSkins.AutoBundling
 
         public string VirtualPath(string skinsPath)
         {
+            if (!skinsPath.EndsWith(FileSystem.DirSeparator.ToString()))
+            {
+                skinsPath += FileSystem.DirSeparator;
+            }
+
             var pathWithExtension = FileSystemPath
-                .Replace(skinsPath + FileSystem.DirSeparator, VirtualPathPrefix)
+                .Replace(skinsPath, VirtualPathPrefix)
                 .Replace(FileSystem.DirSeparator, WebPathSeparator);
 
             var pieces = pathWithExtension.Split(WebPathSeparator);

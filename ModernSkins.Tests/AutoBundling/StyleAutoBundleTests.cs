@@ -10,10 +10,10 @@ namespace ModernSkins.Tests.AutoBundling
         [TestCase("/my/app/Skins/name/styles/bundle.css", "/my/app/Skins", "~/name/styles/bundle")]
         public void ToStyleBundle_ReturnsBundleWithExpectedPath(string bundlePath, string skinsPath, string virtualPath)
         {
-            var mockFileSystem = new Mock<IFileSystem>();
-            mockFileSystem.Setup(fs => fs.FileExists(bundlePath)).Returns(true);
+            var fs = new FakeUnixFileSystem();
+            fs.AddFile(bundlePath);
 
-            var autoBundle = new StyleAutoBundle(bundlePath, mockFileSystem.Object);
+            var autoBundle = new StyleAutoBundle(bundlePath, fs);
 
             var bundle = autoBundle.ToBundle(skinsPath);
 

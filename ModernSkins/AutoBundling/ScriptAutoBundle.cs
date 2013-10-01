@@ -22,18 +22,18 @@ namespace ModernSkins.AutoBundling
 
         public Bundle ToBundle(string skinsPath)
         {
-            return new ScriptBundle(VirtualPath(skinsPath));
+            var bundle = new ScriptBundle(VirtualPath(skinsPath));
 
-            //if (FileSystem.DirExists(FileSystemPath))
-            //{
-            //    bundle.IncludeDirectory(FileSystemPath, "*.js");
-            //}
-            //else
-            //{
-            //    bundle.Include(FileSystemPath);
-            //}
+            if (FileSystem.DirExists(FileSystemPath))
+            {
+                bundle.IncludeDirectory(VirtualPath(skinsPath), "*.js");
+            }
+            else
+            {
+                bundle.Include(VirtualPath(skinsPath));
+            }
 
-            //return bundle;
+            return bundle;
         }
     }
 }

@@ -48,6 +48,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.0\lib\net40\System.Web.Optimization.dll</HintPath>
@@ -75,6 +76,7 @@
     <Compile Include="FakeFileSystemTests.cs" />
     <Compile Include="FakeUnixFileSystem.cs" />
     <Compile Include="FakeDosFileSystem.cs" />
+    <Compile Include="FakeVirtualPathProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AutoBundling\ScriptAutoBundlerTests.cs" />
     <Compile Include="AutoBundling\SkinTests.cs" />
