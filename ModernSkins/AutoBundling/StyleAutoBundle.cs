@@ -2,13 +2,13 @@
 
 namespace ModernSkins.AutoBundling
 {
-    public class StyleAutoBundle : FileAutoBundleBase
+    public class StyleAutoBundle : FileAutoBundleBase, IRepresentAnActualBundle
     {
         public StyleAutoBundle(string filePath, IFileSystem fileSystem) : base(filePath, fileSystem)
         {
         }
 
-        public StyleBundle ToStyleBundle(string skinsPath)
+        public Bundle ToBundle(string skinsPath)
         {
             return new StyleBundle(VirtualPath(skinsPath));
         }
@@ -17,5 +17,10 @@ namespace ModernSkins.AutoBundling
         {
             return new[] {FileSystemPath};
         }
+    }
+
+    public interface IRepresentAnActualBundle
+    {
+        Bundle ToBundle(string skinsPath);
     }
 }

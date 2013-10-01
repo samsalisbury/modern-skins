@@ -15,7 +15,7 @@ namespace ModernSkins.Tests.AutoBundling
 
             var autoBundle = new StyleAutoBundle(bundlePath, mockFileSystem.Object);
 
-            var bundle = autoBundle.ToStyleBundle(skinsPath);
+            var bundle = autoBundle.ToBundle(skinsPath);
 
             Assert.That(bundle.Path, Is.EqualTo(virtualPath));
         }

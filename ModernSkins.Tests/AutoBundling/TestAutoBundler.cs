@@ -1,4 +1,6 @@
-﻿using ModernSkins.AutoBundling;
+﻿using System.Collections.Generic;
+using System.Web.Optimization;
+using ModernSkins.AutoBundling;
 
 namespace ModernSkins.Tests.AutoBundling
 {
@@ -8,4 +10,4 @@ namespace ModernSkins.Tests.AutoBundling
         {
         }
     }
-}
+} 

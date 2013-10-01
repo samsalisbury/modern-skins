@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Optimization;
 
@@ -41,7 +40,9 @@ namespace ModernSkins.AutoBundling
 
         public void RegisterBundles(BundleCollection bundles)
         {
-            throw new System.NotImplementedException();
+            var autoBundles = CreateBundles();
+
+            //autoBundles.ForEach(b=>bundles.Add(b.ToBundle()));
         }
     }
 }
