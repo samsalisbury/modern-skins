@@ -1,5 +1,4 @@
-﻿using System.IO;
-using ModernSkins.AutoBundling;
+﻿using ModernSkins.AutoBundling;
 using Moq;
 using NUnit.Framework;
 
