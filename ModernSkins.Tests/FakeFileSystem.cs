@@ -9,7 +9,7 @@ namespace ModernSkins.Tests
 
         protected FakeFileSystem()
         {
-            Root = new FakeDirectory(string.Empty);
+            Root = new FakeDirectory(string.Empty, this);
         }
 
         public FakeDirectory AddDirectory(string path)

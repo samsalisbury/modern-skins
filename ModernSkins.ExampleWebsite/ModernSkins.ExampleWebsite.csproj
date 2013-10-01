@@ -117,6 +117,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -127,6 +128,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
+    <Content Include="Skins\default\scripts\file_bundle.js" />
     <Content Include="Skins\default\styles\base.css">
       <DependentUpon>base.less</DependentUpon>
     </Content>
@@ -156,10 +158,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
     <Folder Include="Skins\default\images\" />
-    <Folder Include="Skins\default\scripts\" />
+    <Folder Include="Skins\default\scripts\dir_bundle\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -175,6 +176,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Skins\default\styles\lib\lib.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_viewstart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Layout.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

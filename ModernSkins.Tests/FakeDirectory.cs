@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ModernSkins.AutoBundling;
 
 namespace ModernSkins.Tests
 {
     public class FakeDirectory : FakeFileSystemObject
     {
+        readonly IFileSystem _fileSystem;
         public ISet<FakeFileSystemObject> Children { get; private set; }
 
-        public FakeDirectory(string name) : base(name)
+        public FakeDirectory(string name, IFileSystem fileSystem) : base(name)
         {
+            _fileSystem = fileSystem;
             Children = new HashSet<FakeFileSystemObject>();
         }
 
@@ -24,7 +27,7 @@ namespace ModernSkins.Tests
 
             var sameName = (FakeDirectory) Children.SingleOrDefault(child => child.Name == parts[0]);
 
-            var dir = sameName ?? new FakeDirectory(parts[0]);
+            var dir = sameName ?? new FakeDirectory(parts[0], _fileSystem);
             Children.Add(dir);
             if (parts.Length == 2)
             {
@@ -36,7 +39,7 @@ namespace ModernSkins.Tests
 
         public string[] Split(string path)
         {
-            return path.Split(new[] { '/' }, 2, StringSplitOptions.RemoveEmptyEntries);
+            return path.Split(new[] { _fileSystem.DirSeparator }, 2, StringSplitOptions.RemoveEmptyEntries);
         }
 
         public FakeDirectory AddFiles(params string[] names)
