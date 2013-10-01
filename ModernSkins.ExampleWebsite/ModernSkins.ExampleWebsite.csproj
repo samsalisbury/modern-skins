@@ -128,24 +128,35 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
-    <Content Include="Skins\default\scripts\file_bundle.js" />
+    <Content Include="Skins\default\scripts\dir_bundle\dir_bundle_file.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\default\scripts\file_bundle.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Skins\default\styles\base.css">
       <DependentUpon>base.less</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\default\styles\base.min.css">
       <DependentUpon>base.less</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\default\styles\lib\base.css">
       <DependentUpon>lib.less</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\default\styles\lib\base.min.css">
       <DependentUpon>lib.less</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\default\styles\lib\lib.css">
       <DependentUpon>lib.less</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\default\styles\lib\lib.min.css">
       <DependentUpon>lib.less</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -160,7 +171,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Skins\default\images\" />
-    <Folder Include="Skins\default\scripts\dir_bundle\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -172,10 +182,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Skins\default\styles\base.less" />
+    <Content Include="Skins\default\styles\base.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Skins\default\styles\lib\lib.less" />
+    <Content Include="Skins\default\styles\lib\lib.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />

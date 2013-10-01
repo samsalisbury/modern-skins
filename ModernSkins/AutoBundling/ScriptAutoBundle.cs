@@ -26,6 +26,10 @@ namespace ModernSkins.AutoBundling
 
             if (FileSystem.DirExists(FileSystemPath))
             {
+                // TODO: IncludeDirectory needs to be passed a virtual path relative to the application
+                // Rather than relative to the Skins directory, as is done presently.
+                // Sort it!
+
                 bundle.IncludeDirectory(VirtualPath(skinsPath), "*.js");
             }
             else
