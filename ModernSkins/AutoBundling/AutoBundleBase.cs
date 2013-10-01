@@ -15,25 +15,28 @@ namespace ModernSkins.AutoBundling
             Name = System.IO.Path.GetFileNameWithoutExtension(path);
         }
 
+        const char WebPathSeparator = '/';
+        const char FileExtensionSeparator = '.';
+        const string VirtualPathPrefix = "~/";
+
         public string VirtualPath(string skinsPath)
         {
             var pathWithExtension = FileSystemPath
-                .Replace(skinsPath + "\\", "~/")
-                .Replace(skinsPath + "/", "~/")
-                .Replace(FileSystem.DirSeparator, '/');
+                .Replace(skinsPath + FileSystem.DirSeparator, VirtualPathPrefix)
+                .Replace(FileSystem.DirSeparator, WebPathSeparator);
 
-            var pieces = pathWithExtension.Split('/');
+            var pieces = pathWithExtension.Split(WebPathSeparator);
             var lastPiece = pieces.Last();
 
-            if (!lastPiece.Contains('.'))
+            if (!lastPiece.Contains(FileExtensionSeparator))
             {
                 return pathWithExtension;
             }
 
-            var lastDotIndex = lastPiece.LastIndexOf('.');
+            var lastDotIndex = lastPiece.LastIndexOf(FileExtensionSeparator);
             pieces[pieces.Length - 1] = lastPiece.Substring(0, lastDotIndex);
 
-            return string.Join("/", pieces);
+            return string.Join(WebPathSeparator.ToString(), pieces);
         }
     }
 }

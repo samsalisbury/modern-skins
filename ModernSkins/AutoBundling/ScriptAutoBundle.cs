@@ -1,8 +1,9 @@
 ﻿using System.IO;
+using System.Web.Optimization;
 
 namespace ModernSkins.AutoBundling
 {
-    public class ScriptAutoBundle : AutoBundleBase
+    public class ScriptAutoBundle : AutoBundleBase, IRepresentAnActualBundle
     {
         public ScriptAutoBundle(string path, IFileSystem fileSystem) : base(path, fileSystem)
         {
@@ -17,6 +18,22 @@ namespace ModernSkins.AutoBundling
         public string[] ListFilesToBundle()
         {
             return FileSystem.FileExists(FileSystemPath) ? new[] {FileSystemPath} : FileSystem.GetFiles(FileSystemPath);
+        }
+
+        public Bundle ToBundle(string skinsPath)
+        {
+            return new ScriptBundle(VirtualPath(skinsPath));
+
+            //if (FileSystem.DirExists(FileSystemPath))
+            //{
+            //    bundle.IncludeDirectory(FileSystemPath, "*.js");
+            //}
+            //else
+            //{
+            //    bundle.Include(FileSystemPath);
+            //}
+
+            //return bundle;
         }
     }
 }

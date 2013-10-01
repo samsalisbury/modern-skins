@@ -11,9 +11,9 @@ namespace ModernSkins.AutoBundling
         {
         }
 
-        public AutoBundleBase[] CreateBundles()
+        public IRepresentAnActualBundle[] CreateBundles()
         {
-            var list = new List<AutoBundleBase>();
+            var list = new List<IRepresentAnActualBundle>();
 
             if (SubPathExists(StylesDirName))
             {

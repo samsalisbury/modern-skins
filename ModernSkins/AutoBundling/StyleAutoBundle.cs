@@ -18,9 +18,4 @@ namespace ModernSkins.AutoBundling
             return new[] {FileSystemPath};
         }
     }
-
-    public interface IRepresentAnActualBundle
-    {
-        Bundle ToBundle(string skinsPath);
-    }
 }

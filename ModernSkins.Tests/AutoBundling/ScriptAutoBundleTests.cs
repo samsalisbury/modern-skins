@@ -1,4 +1,6 @@
-﻿using ModernSkins.AutoBundling;
+﻿using System.Linq;
+using System.Web.Optimization;
+using ModernSkins.AutoBundling;
 using Moq;
 using NUnit.Framework;
 
@@ -41,6 +43,25 @@ namespace ModernSkins.Tests.AutoBundling
             Assert.That(result.Length, Is.EqualTo(filesInDir.Length));
             Assert.That(result[0], Is.EqualTo(filesInDir[0]));
             Assert.That(result[1], Is.EqualTo(filesInDir[1]));
+        }
+
+        [Test]
+        public void ToBundle_WhenPathIsDirectory_ReturnsExpectedBundle()
+        {
+            var fs = new FakeUnixFileSystem();
+            fs.AddFiles("/this.is/a/dir/bundle[bundle_file_1.js,bundle_file_2.js]");
+
+            var autoBundle = new ScriptAutoBundle("/this.is/a/dir", fs);
+
+            var bundle = autoBundle.ToBundle("/this.is/a/");
+
+            Assert.That(bundle.Path, Is.EqualTo("~/dir/bundle"));
+
+            var includedFiles = bundle.EnumerateFiles(null).ToList();
+
+            Assert.That(includedFiles, Has.Count.EqualTo(2));
+            Assert.That(includedFiles.Count(f => f.IncludedVirtualPath.Contains("bundle_file_1.js")), Is.EqualTo(1));
+            Assert.That(includedFiles.Count(f => f.IncludedVirtualPath.Contains("bundle_file_2.js")), Is.EqualTo(1));
         }
     }
 }

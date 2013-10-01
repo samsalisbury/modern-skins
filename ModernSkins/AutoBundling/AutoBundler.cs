@@ -26,9 +26,9 @@ namespace ModernSkins.AutoBundling
             return skins.ToDictionary(skin => skin.Name);
         }
 
-        public AutoBundleBase[] CreateBundles()
+        public IRepresentAnActualBundle[] CreateBundles()
         {
-            var bundles = new List<AutoBundleBase>();
+            var bundles = new List<IRepresentAnActualBundle>();
             var skins = EnumerateSkins();
             foreach (var skin in skins)
             {
@@ -41,8 +41,11 @@ namespace ModernSkins.AutoBundling
         public void RegisterBundles(BundleCollection bundles)
         {
             var autoBundles = CreateBundles();
-
-            //autoBundles.ForEach(b=>bundles.Add(b.ToBundle()));
+            
+            foreach (var bundle in autoBundles)
+            {
+                bundles.Add(bundle.ToBundle(_skinsDir));
+            }
         }
     }
 }
