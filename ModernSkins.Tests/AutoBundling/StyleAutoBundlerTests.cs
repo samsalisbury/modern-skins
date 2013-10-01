@@ -84,5 +84,24 @@ namespace ModernSkins.Tests.AutoBundling
             Assert.That(bundles["my_style"].ListFilesToBundle()[0], Is.EqualTo("C:\\MyApp\\Skins\\MySkin\\styles\\my_style.scss"));
             Assert.That(bundles["my_other_style"].ListFilesToBundle()[0], Is.EqualTo("C:\\MyApp\\Skins\\MySkin\\styles\\my_other_style.scss"));
         }
+
+        [Test]
+        public void GetStyleBundles_ShouldIgnoreCssFilesIfTheyMatchSassFileNames()
+        {
+            const string styleDirPath = "C:\\MyApp\\Skins\\MySkin\\styles";
+
+            var fs = new FakeDosFileSystem();
+            var dir = fs.AddDirectory(styleDirPath);
+            dir.AddFiles("my_style.css", "my_other_style.css");
+            dir.AddFiles("my_style.sass", "my_other_style.sass");
+
+            var bundler = new StyleAutoBundler(styleDirPath, fs);
+
+            var bundles = bundler.GetStyleBundles();
+
+            Assert.That(bundles, Has.Count.EqualTo(2));
+            Assert.That(bundles["my_style"].ListFilesToBundle()[0], Is.EqualTo("C:\\MyApp\\Skins\\MySkin\\styles\\my_style.sass"));
+            Assert.That(bundles["my_other_style"].ListFilesToBundle()[0], Is.EqualTo("C:\\MyApp\\Skins\\MySkin\\styles\\my_other_style.sass"));
+        }
     }
 }
