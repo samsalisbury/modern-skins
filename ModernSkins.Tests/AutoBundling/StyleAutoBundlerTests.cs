@@ -11,7 +11,7 @@ namespace ModernSkins.Tests.AutoBundling
         [TestCase("other_styles", "/my-skin/styles/other_styles.less")]
         public void GetStyleBundles_ReturnsExpectedBundles_IgnoringDirectories(string name, string fileToCreate)
         {
-            var fs = new FakeFileSystem();
+            var fs = new FakeUnixFileSystem();
             fs.AddFile(fileToCreate);
             fs.AddDirectory("/my-skin/styles/this_dir_should_be_ignored");
             

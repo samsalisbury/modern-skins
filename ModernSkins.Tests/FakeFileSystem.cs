@@ -1,15 +1,13 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using ModernSkins.AutoBundling;
 
 namespace ModernSkins.Tests
 {
-    public class FakeFileSystem : IFileSystem
+    public abstract class FakeFileSystem : IFileSystem
     {
         public FakeDirectory Root { get; private set; }
 
-        public FakeFileSystem()
+        protected FakeFileSystem()
         {
             Root = new FakeDirectory(string.Empty);
         }
@@ -29,7 +27,7 @@ namespace ModernSkins.Tests
             return Root.Object(path) is FakeDirectory;
         }
 
-        public char DirSeparator { get { return '/'; } }
+        public abstract char DirSeparator { get; }
 
         public string[] GetDirectories(string path)
         {

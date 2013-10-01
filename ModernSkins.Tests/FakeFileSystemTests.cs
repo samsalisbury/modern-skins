@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Linq;
+﻿using System.Linq;
 using NUnit.Framework;
 
 namespace ModernSkins.Tests
@@ -7,80 +6,82 @@ namespace ModernSkins.Tests
     [TestFixture]
     public class FakeFileSystemTests
     {
+        FakeFileSystem _fs;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _fs = new FakeUnixFileSystem();
+        }
+
         [Test]
         public void AddDirectory_DirExists()
         {
-            var fs = new FakeFileSystem();
             const string dirName = "MyApp/Skins/skin1";
 
-            fs.AddDirectory(dirName);
+            _fs.AddDirectory(dirName);
 
-            Assert.True(fs.DirExists(dirName));
+            Assert.True(_fs.DirExists(dirName));
         }
 
         [Test]
         public void AddDirectory_AddDirectory_CreatesSubDirectory_NotFiles()
         {
-            var fs = new FakeFileSystem();
             const string dirName = "MyApp/Skins/skin1";
             const string subDirName = "scripts";
             const string subDirPath = dirName + "/" + subDirName;
             
-            fs.AddDirectory(dirName).AddDirectory(subDirName);
+            _fs.AddDirectory(dirName).AddDirectory(subDirName);
 
-            Assert.True(fs.DirExists(subDirPath));
-            Assert.False(fs.FileExists(subDirPath));
+            Assert.True(_fs.DirExists(subDirPath));
+            Assert.False(_fs.FileExists(subDirPath));
         }
 
         [Test]
         public void AddDirectory_MergesDirectories()
         {
-            var fs = new FakeFileSystem();
+            _fs.AddDirectory("path/that/is/duplicated");
+            _fs.AddDirectory("path/that/is/duplicated/thing-inside");
+            _fs.AddDirectory("path/that/is/cool");
+            _fs.AddDirectory("path/that/is/the/other/one");
 
-            fs.AddDirectory("path/that/is/duplicated");
-            fs.AddDirectory("path/that/is/duplicated/thing-inside");
-            fs.AddDirectory("path/that/is/cool");
-            fs.AddDirectory("path/that/is/the/other/one");
+            Assert.That(_fs.GetDirectories("path/that/is"), Has.Length.EqualTo(3));
+            Assert.That(_fs.GetDirectories("path/that/is")[0], Is.EqualTo("path/that/is/duplicated"));
+            Assert.That(_fs.GetDirectories("path/that/is")[1], Is.EqualTo("path/that/is/cool"));
+            Assert.That(_fs.GetDirectories("path/that/is")[2], Is.EqualTo("path/that/is/the"));
 
-            Assert.That(fs.GetDirectories("path/that/is"), Has.Length.EqualTo(3));
-            Assert.That(fs.GetDirectories("path/that/is")[0], Is.EqualTo("path/that/is/duplicated"));
-            Assert.That(fs.GetDirectories("path/that/is")[1], Is.EqualTo("path/that/is/cool"));
-            Assert.That(fs.GetDirectories("path/that/is")[2], Is.EqualTo("path/that/is/the"));
-
-            Assert.That(fs.GetDirectories("path/that"), Has.Length.EqualTo(1));
-            Assert.That(fs.GetDirectories("path/that")[0], Is.EqualTo("path/that/is"));
+            Assert.That(_fs.GetDirectories("path/that"), Has.Length.EqualTo(1));
+            Assert.That(_fs.GetDirectories("path/that")[0], Is.EqualTo("path/that/is"));
         }
 
         [Test]
         public void AddDirectory_AddFiles_CreatesExpectedFiles_NotDirectories()
         {
-            var fs = new FakeFileSystem();
             const string dirName = "SomeDirectory/Hello";
             var files = new[] {"file1.jpg", "file2", "file_three.txt"};
             var filePaths = files.Select(name => dirName + "/" + name).ToArray();
 
-            fs.AddDirectory(dirName).AddFiles(files);
+            _fs.AddDirectory(dirName).AddFiles(files);
 
-            Assert.True(fs.FileExists(filePaths[0]));
-            Assert.True(fs.FileExists(filePaths[1]));
-            Assert.True(fs.FileExists(filePaths[2]));
+            Assert.True(_fs.FileExists(filePaths[0]));
+            Assert.True(_fs.FileExists(filePaths[1]));
+            Assert.True(_fs.FileExists(filePaths[2]));
 
-            Assert.False(fs.DirExists(filePaths[0]));
-            Assert.False(fs.DirExists(filePaths[1]));
-            Assert.False(fs.DirExists(filePaths[2]));
+            Assert.False(_fs.DirExists(filePaths[0]));
+            Assert.False(_fs.DirExists(filePaths[1]));
+            Assert.False(_fs.DirExists(filePaths[2]));
         }
 
         [Test]
         public void GetDirectories_ReturnsExpectedDirectories()
         {
-            var fs = new FakeFileSystem();
-            var baseDir = fs.AddDirectory("basedir");
+            var baseDir = _fs.AddDirectory("basedir");
             baseDir.AddDirectory("dir1");
             baseDir.AddDirectory("dir2");
             baseDir.AddDirectory("dir3");
             baseDir.AddFiles("file1", "file2");
 
-            var result = fs.GetDirectories("basedir");
+            var result = _fs.GetDirectories("basedir");
 
             Assert.That(result, Has.Length.EqualTo(3));
             Assert.That(result[0], Is.EqualTo("basedir/" + "dir1"));
@@ -91,13 +92,12 @@ namespace ModernSkins.Tests
         [Test]
         public void GetFiles_ReturnsExpectedFiles()
         {
-            var fs = new FakeFileSystem();
-            var baseDir = fs.AddDirectory("basedir");
+            var baseDir = _fs.AddDirectory("basedir");
             baseDir.AddDirectory("dir1");
             baseDir.AddDirectory("dir2");
             baseDir.AddFiles("file1", "file2", "file3");
 
-            var result = fs.GetFiles("basedir");
+            var result = _fs.GetFiles("basedir");
 
             Assert.That(result, Has.Length.EqualTo(3));
             Assert.That(result[0], Is.EqualTo("basedir/" + "file1"));
@@ -108,14 +108,13 @@ namespace ModernSkins.Tests
         [Test]
         public void GetFileSystemEntries_ReturnsAllEntries()
         {
-            var fs = new FakeFileSystem();
-            var baseDir = fs.AddDirectory("basedir");
+            var baseDir = _fs.AddDirectory("basedir");
             baseDir.AddDirectory("dir1");
             baseDir.AddDirectory("dir2");
             baseDir.AddDirectory("dir3");
             baseDir.AddFiles("file1", "file2", "file3");
 
-            var result = fs.GetFileSystemEntries("basedir");
+            var result = _fs.GetFileSystemEntries("basedir");
 
             Assert.That(result, Has.Length.EqualTo(6));
             Assert.That(result[0], Is.EqualTo("basedir/" + "dir1"));
@@ -129,11 +128,9 @@ namespace ModernSkins.Tests
         [Test]
         public void AddFiles_CreatesExpectedFiles()
         {
-            var fs = new FakeFileSystem();
+            _fs.AddFiles("/base/dir/other/[file1.js,file2.coffee,file3.css,file4.jpg]");
 
-            fs.AddFiles("/base/dir/other/[file1.js,file2.coffee,file3.css,file4.jpg]");
-
-            var createdFiles = fs.GetFiles("/base/dir/other");
+            var createdFiles = _fs.GetFiles("/base/dir/other");
 
             Assert.That(createdFiles, Has.Length.EqualTo(4));
             Assert.That(createdFiles[0], Is.EqualTo("/base/dir/other/file1.js"));
@@ -145,11 +142,9 @@ namespace ModernSkins.Tests
         [Test]
         public void AddFile_CreatesExpectedFile()
         {
-            var fs = new FakeFileSystem();
+            _fs.AddFile("/some/dir.path/and/then/a/file");
 
-            fs.AddFile("/some/dir.path/and/then/a/file");
-
-            var createdFiles = fs.GetFiles("/some/dir.path/and/then/a");
+            var createdFiles = _fs.GetFiles("/some/dir.path/and/then/a");
 
             Assert.That(createdFiles.Length, Is.EqualTo(1));
             Assert.That(createdFiles[0], Is.EqualTo("/some/dir.path/and/then/a/file"));
@@ -161,9 +156,7 @@ namespace ModernSkins.Tests
         [TestCase("/part1/", "/part2")]
         public void CombinePaths_CombinesPathsAsExpected(string p1, string p2)
         {
-            var fs = new FakeFileSystem();
-
-            var result = fs.CombinePaths(p1, p2);
+            var result = _fs.CombinePaths(p1, p2);
 
             Assert.That(result, Is.EqualTo("/part1/part2"));
         }

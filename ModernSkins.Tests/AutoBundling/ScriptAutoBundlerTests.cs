@@ -12,7 +12,7 @@ namespace ModernSkins.Tests.AutoBundling
         [TestCase("another_js_bundle", "/scripts/another_js_bundle.js", "/scripts/another_js_bundle.js")]
         public void GetScriptBundles_ReturnsExpectedBundles(string expectedName, string fileToCreate, string expectedPath)
         {
-            var fs = new FakeFileSystem();
+            var fs = new FakeUnixFileSystem();
             fs.AddFile(fileToCreate);
 
             const string scriptsPath = "/scripts";

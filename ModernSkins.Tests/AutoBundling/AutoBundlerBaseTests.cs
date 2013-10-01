@@ -1,4 +1,5 @@
 ﻿using ModernSkins.AutoBundling;
+using Moq;
 using NUnit.Framework;
 
 namespace ModernSkins.Tests.AutoBundling
@@ -24,7 +25,7 @@ namespace ModernSkins.Tests.AutoBundling
 
     public class TestAutoBundler : AutoBundleBase
     {
-        public TestAutoBundler(string path) : base(path, new FileSystem())
+        public TestAutoBundler(string path) : base(path, new Mock<IFileSystem>().Object)
         {
         }
     }

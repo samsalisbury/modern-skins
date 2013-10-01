@@ -14,7 +14,7 @@ namespace ModernSkins.Tests.AutoBundling
         [TestCase("C:\\Nor\\is\\this")]
         public void Ctor_Throws_DirectoryNotFound_IfPassedNonExistentPath(string nonExistentPath)
         {
-            var fs = new FakeFileSystem();
+            var fs = new FakeUnixFileSystem();
 
             Assert.Throws<DirectoryNotFoundException>(() => new Skin(nonExistentPath, fs));
         }
@@ -23,7 +23,7 @@ namespace ModernSkins.Tests.AutoBundling
         [TestCase("/Skins/testskin2/styles/some_scss_styles2.scss")]
         public void Ctor_Throws_DirectoryNotFound_IfPassedPathToFile(string filePath)
         {
-            var fs = new FakeFileSystem();
+            var fs = new FakeUnixFileSystem();
             fs.AddFile(filePath);
 
             Assert.Throws<DirectoryNotFoundException>(() => new Skin(filePath, fs));
@@ -33,7 +33,7 @@ namespace ModernSkins.Tests.AutoBundling
         [TestCase("/Skins/testskin2", "testskin2")]
         public void Ctor_GivesSkinCorrectName(string skinDir, string expectedName)
         {
-            var fs = new FakeFileSystem();
+            var fs = new FakeUnixFileSystem();
             fs.AddDirectory(skinDir);
 
             var skin = new Skin(skinDir, fs);
@@ -47,7 +47,7 @@ namespace ModernSkins.Tests.AutoBundling
             const string basePath = "/skins";
             const string testSkinDir = "/skins/my-skin";
 
-            var fs = new FakeFileSystem();
+            var fs = new FakeUnixFileSystem();
 
             var expectations = new Dictionary<string, Tuple<string, Type>>();
 

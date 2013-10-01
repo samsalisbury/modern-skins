@@ -9,7 +9,7 @@ namespace ModernSkins.Tests.AutoBundling
         [Test]
         public void EnumerateSkins_ShouldListCorrectSkins()
         {
-            var fs = new FakeFileSystem();
+            var fs = new FakeUnixFileSystem();
             fs.AddDirectory("/my-app/Skins/testskin");
             fs.AddDirectory("/my-app/Skins/testskin2");
 
@@ -31,7 +31,7 @@ namespace ModernSkins.Tests.AutoBundling
         [Test]
         public void CreateBundles_ShouldCreateExpectedNumberOfBundles()
         {
-            var fs = new FakeFileSystem();
+            var fs = new FakeUnixFileSystem();
             fs.AddFiles("/base/my-app/SkinsDir/skin1/styles[base_styles.css,other_styles.scss,my_styles.less]");
             fs.AddFiles("/base/my-app/SkinsDir/skin1/styles/lib[dirs,in,styles,dir,are,not,bundles]");
             fs.AddFiles("/base/my-app/SkinsDir/skin1/scripts[all.js,scripts.coffee,are.js,bundles.js]");
