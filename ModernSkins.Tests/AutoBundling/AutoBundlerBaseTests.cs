@@ -1,5 +1,4 @@
 ﻿using ModernSkins.AutoBundling;
-using Moq;
 using NUnit.Framework;
 
 namespace ModernSkins.Tests.AutoBundling
@@ -29,13 +28,6 @@ namespace ModernSkins.Tests.AutoBundling
             var result = bundler.VirtualPath(skinsPath);
 
             Assert.That(result, Is.EqualTo(expectedPath));
-        }
-    }
-
-    public class TestAutoBundler : AutoBundleBase
-    {
-        public TestAutoBundler(string path, IFileSystem fileSystem) : base(path, fileSystem)
-        {
         }
     }
 }
