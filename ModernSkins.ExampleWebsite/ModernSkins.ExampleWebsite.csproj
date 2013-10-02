@@ -160,11 +160,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
-    <Content Include="Skins\my-skin\scripts\dir_bundle\dir_bundle_file.js">
+    <Content Include="Skins\my-skin\scripts\dir-js-bundle\dir-js-bundle-file-1.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Skins\my-skin\scripts\dir_bundle\dir_bundle_file_2.js" />
-    <Content Include="Skins\my-skin\scripts\file_bundle.js">
+    <Content Include="Skins\my-skin\scripts\dir-js-bundle\dir-js-bundle-file-2.js" />
+    <Content Include="Skins\my-skin\scripts\single-js-file-bundle.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\my-skin\styles\base.css">
@@ -220,7 +220,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Content Include="Skins\my-skin\styles\test_less.less" />
-    <Content Include="Views\Shared\SkinSnippets\Script.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Skins\my-skin\styles\lib\lib.scss">
@@ -229,12 +228,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\_viewstart.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="BundleTransformer.Configuration.xsd">

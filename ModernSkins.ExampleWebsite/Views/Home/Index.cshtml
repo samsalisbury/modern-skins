@@ -1,5 +1,45 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
+﻿@using ModernSkins
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Layout</title>
+    
+    @* The skin should be set once per request, in this scheme. *@
+    @Skin.SetSkin("my-skin")
+    
+    @* Load the style bundles *@
+    @Skin.StyleBundle("base")
+    @Skin.StyleBundle("test_css")
+    @Skin.StyleBundle("test_less")
+    
+    @* Some styles to help with the test results. *@
+    <style>
+        section { width: 50%; font-size: 1.5em; font-family: sans-serif; margin: 0 auto; }
+        .script, .style { color: red; font-weight: bold; }
+        .script.pass, .style.pass { color: green; }
+        .style.pass:after, .script.pass:after { content: " PASS!" }
+    </style>
 
-<h2>Index</h2>
+    @* Script bundles are loaded at the bottom ;) *@
+
+</head>
+    <body>
+        <section>
+            <h1>Modern Skins test website</h1>
+            
+            <h2>Script bundles:</h2>
+            <p class="script" id="single-js-file">     Single       JS     file  bundle not loaded.</p>
+            <p class="script" id="single-coffee-file"> Single       Coffee file  bundle not loaded.</p>
+            <p class="script" id="dir-js-bundle">      Directory of JS     files bundle not loaded.</p>
+            
+            <h2>Style bundles</h2>
+            <p class="style" id="single-css-file">     Single CSS  file bundle <span>not</span> loaded.</p>
+            <p class="style" id="single-scss-file">    Single SCSS file bundle <span>not</span> loaded.</p>
+            <p class="style" id="single-sass-file">    Single SASS file bundle <span>not</span> loaded.</p>
+            <p class="style" id="single-less-file">    Single LESS file bundle <span>not</span> loaded.</p>
+        </section>
+        @Skin.ScriptBundle("single-js-file-bundle")
+        @Skin.ScriptBundle("dir-js-bundle")
+    </body>
+</html>
