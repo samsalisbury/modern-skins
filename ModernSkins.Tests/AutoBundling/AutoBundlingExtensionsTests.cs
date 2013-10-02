@@ -16,21 +16,21 @@ namespace ModernSkins.Tests.AutoBundling
             Assert.Throws<InvalidOperationException>(() => new BundleCollection().RegisterAutoBundles());
         }
 
-        [Test]
-        public void RegisterAutoBundles_RegistersExpectedBundles()
-        {
-            var server = new Mock<HttpServerUtilityBase>();
-            var fs = new FakeDosFileSystem();
-            fs.AddFiles("C:\\MyApp\\Skins\\skin1\\scripts[script1.js,script2.js]");
-            fs.AddFiles("C:\\MyApp\\Skins\\skin1\\styles[style1.css,style2.sass]");
-            server.Setup(s => s.MapPath("~/")).Returns("C:\\MyApp");
-            server.Setup(s => s.MapPath("~/Skins")).Returns("C:\\MyApp\\Skins");
+        //[Test]
+        //public void RegisterAutoBundles_RegistersExpectedBundles()
+        //{
+        //    var server = new Mock<HttpServerUtilityBase>();
+        //    var fs = new FakeDosFileSystem();
+        //    fs.AddFiles("C:\\MyApp\\Skins\\skin1\\scripts[script1.js,script2.js]");
+        //    fs.AddFiles("C:\\MyApp\\Skins\\skin1\\styles[style1.css,style2.sass]");
+        //    server.Setup(s => s.MapPath("~/")).Returns("C:\\MyApp");
+        //    server.Setup(s => s.MapPath("~/Skins")).Returns("C:\\MyApp\\Skins");
 
-            var bundles = new BundleCollection();
+        //    var bundles = new BundleCollection();
 
-            bundles.RegisterAutoBundles(server.Object, fs);
+        //    bundles.RegisterAutoBundles(server.Object, fs);
 
-            Assert.That(bundles.Count, Is.EqualTo(4));
-        }
+        //    Assert.That(bundles.Count, Is.EqualTo(4));
+        //}
     }
 }

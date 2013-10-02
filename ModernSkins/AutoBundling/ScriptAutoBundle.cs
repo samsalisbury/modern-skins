@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Web.Optimization;
 
 namespace ModernSkins.AutoBundling
 {
@@ -22,11 +21,11 @@ namespace ModernSkins.AutoBundling
 
         public BundleStub ToBundle(string appPath, string skinsPath)
         {
-            var bundle = new ScriptBundleStub();
+            var bundle = new ScriptBundleStub {VirtualUrl = VirtualPath(skinsPath)};
 
             if (FileSystem.DirExists(FileSystemPath))
             {
-                bundle.AppRelativeContentPaths = new[] {FileSystem.CombinePaths(VirtualPath(appPath), "*js")};
+                bundle.AppRelativeContentPaths = new[] {FileSystem.CombinePaths(VirtualPath(appPath), "*.js")};
             }
             else
             {

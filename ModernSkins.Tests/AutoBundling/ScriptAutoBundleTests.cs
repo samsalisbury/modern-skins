@@ -58,11 +58,9 @@ namespace ModernSkins.Tests.AutoBundling
             var autoBundle = new ScriptAutoBundle("/app/skins/myskin/scripts/mybundle", fs);
             var bundle = autoBundle.ToBundle("/app", "/app/skins");
 
-            var includedThings = bundle.AppRelativeContentPaths;
-
-            Assert.That(includedThings, Has.Count.EqualTo(1));
-            
-            Assert.That(includedThings[0], Is.EqualTo("~/myskin/scripts/mybundle"));
+            Assert.That(bundle.VirtualUrl, Is.EqualTo("~/myskin/scripts/mybundle"));
+            Assert.That(bundle.AppRelativeContentPaths, Has.Length.EqualTo(1));
+            Assert.That(bundle.AppRelativeContentPaths[0], Is.EqualTo("~/skins/myskin/scripts/mybundle/*.js"));
         }
 
         [Test]
@@ -74,11 +72,9 @@ namespace ModernSkins.Tests.AutoBundling
             var autoBundle = new ScriptAutoBundle("/app/skins/myskin/scripts/bundle_a.js", fs);
             var bundle = autoBundle.ToBundle("/app", "/app/skins");
 
-            var includedThings = bundle.AppRelativeContentPaths;
-
-            Assert.That(includedThings, Has.Count.EqualTo(1));
-            
-            Assert.That(includedThings[0], Is.EqualTo("~/myskin/scripts/bundle_a.js"));
+            Assert.That(bundle.VirtualUrl, Is.EqualTo("~/myskin/scripts/bundle_a"));
+            Assert.That(bundle.AppRelativeContentPaths, Has.Length.EqualTo(1));
+            Assert.That(bundle.AppRelativeContentPaths[0], Is.EqualTo("~/skins/myskin/scripts/bundle_a"));
         }
     }
 }
