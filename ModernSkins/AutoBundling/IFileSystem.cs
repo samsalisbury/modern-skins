@@ -9,5 +9,6 @@
         string[] GetFiles(string path);
         string[] GetFileSystemEntries(string path);
         string CombinePaths(string path, string subPath);
+        string GetFileName(string path);
     }
 }

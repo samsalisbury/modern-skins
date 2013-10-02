@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 
 namespace ModernSkins.AutoBundling
 {
@@ -25,7 +26,9 @@ namespace ModernSkins.AutoBundling
 
             if (FileSystem.DirExists(FileSystemPath))
             {
-                bundle.AppRelativeContentPaths = new[] {FileSystem.CombinePaths(VirtualPath(appPath), "*.js")};
+                var fileNames = FileSystem.GetFiles(FileSystemPath).Select(FileSystem.GetFileName);
+
+                bundle.AppRelativeContentPaths = fileNames.Select(name => VirtualPath(appPath) + '/' + name).ToArray();
             }
             else
             {

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using ModernSkins.AutoBundling;
 
 namespace ModernSkins.Tests
@@ -66,6 +67,11 @@ namespace ModernSkins.Tests
             }
 
             return p1 + DirSeparator + p2;
+        }
+
+        public string GetFileName(string path)
+        {
+            return path.Split(DirSeparator).Last();
         }
 
         public void AddFile(string path)

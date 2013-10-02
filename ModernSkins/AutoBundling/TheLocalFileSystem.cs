@@ -34,5 +34,10 @@ namespace ModernSkins.AutoBundling
         {
             return Path.Combine(path, subPath);
         }
+
+        public string GetFileName(string path)
+        {
+            return Path.GetFileName(path);
+        }
     }
 }

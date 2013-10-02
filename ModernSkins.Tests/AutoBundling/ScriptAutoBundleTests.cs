@@ -59,8 +59,9 @@ namespace ModernSkins.Tests.AutoBundling
             var bundle = autoBundle.ToBundle("/app", "/app/skins");
 
             Assert.That(bundle.VirtualUrl, Is.EqualTo("~/myskin/scripts/mybundle"));
-            Assert.That(bundle.AppRelativeContentPaths, Has.Length.EqualTo(1));
-            Assert.That(bundle.AppRelativeContentPaths[0], Is.EqualTo("~/skins/myskin/scripts/mybundle/*.js"));
+            Assert.That(bundle.AppRelativeContentPaths, Has.Length.EqualTo(2));
+            Assert.That(bundle.AppRelativeContentPaths[0], Is.EqualTo("~/skins/myskin/scripts/mybundle/bundle_file_1.js"));
+            Assert.That(bundle.AppRelativeContentPaths[1], Is.EqualTo("~/skins/myskin/scripts/mybundle/bundle_file_2.js"));
         }
 
         [Test]
