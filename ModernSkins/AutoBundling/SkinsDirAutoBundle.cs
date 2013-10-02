@@ -6,16 +6,18 @@ namespace ModernSkins.AutoBundling
 {
     public class SkinsDirAutoBundle
     {
+        readonly string _appPath;
         readonly string _skinsDir;
         readonly IFileSystem _fileSystem;
 
-        public SkinsDirAutoBundle(string skinsDir) : this(skinsDir, new TheLocalFileSystem())
+        public SkinsDirAutoBundle(string skinsDir, string appPath) : this(skinsDir, appPath, new TheLocalFileSystem())
         {
         }
 
-        public SkinsDirAutoBundle(string skinsDir, IFileSystem fileSystem)
+        public SkinsDirAutoBundle(string skinsDir, string appPath, IFileSystem fileSystem)
         {
             _skinsDir = skinsDir;
+            _appPath = appPath;
             _fileSystem = fileSystem;
         }
 
@@ -32,7 +34,7 @@ namespace ModernSkins.AutoBundling
             var skins = EnumerateSkins();
             foreach (var skin in skins)
             {
-                bundles.AddRange(skin.Value.CreateBundles().ToList());
+                bundles.AddRange(skin.Value.CreateBundles(_skinsDir).ToList());
             }
 
             return bundles.ToArray();
@@ -44,7 +46,7 @@ namespace ModernSkins.AutoBundling
             
             foreach (var bundle in autoBundles)
             {
-                bundles.Add(bundle.ToBundle(_skinsDir));
+                bundles.Add(bundle.ToBundle(_appPath));
             }
         }
     }

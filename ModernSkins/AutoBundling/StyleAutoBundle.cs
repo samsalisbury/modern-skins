@@ -13,6 +13,8 @@ namespace ModernSkins.AutoBundling
             return new StyleBundle(VirtualPath(appPath));
         }
 
+        public string CalculatedVirtualPath { get; set; }
+
         public string[] ListFilesToBundle()
         {
             return new[] {FileSystemPath};

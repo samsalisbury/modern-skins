@@ -11,6 +11,7 @@ namespace ModernSkins.Tests.AutoBundling
     public class SkinAutoBundleTests
     {
         FakeFileSystem _fs;
+        const string AppPath = "/";
         const string BasePath = "/skins";
         const string TestSkinDir = "/skins/my-skin";
         Dictionary<string, Tuple<string, Type>> _expectedBundles;
@@ -96,7 +97,7 @@ namespace ModernSkins.Tests.AutoBundling
         {
             var skin = new SkinAutoBundle(TestSkinDir, _fs);
 
-            var bundles = skin.CreateBundles();
+            var bundles = skin.CreateBundles(AppPath);
 
             Assert.That(bundles, Has.Length.EqualTo(_expectedBundles.Count));
 
@@ -118,7 +119,7 @@ namespace ModernSkins.Tests.AutoBundling
         {
             var skin = new SkinAutoBundle("/skins/my-skin", _fs);
 
-            var actualBundles = skin.CreateBundles();
+            var actualBundles = skin.CreateBundles(AppPath);
 
             Assert.That(actualBundles, Has.Length.EqualTo(_expectedBundles.Count));
         }

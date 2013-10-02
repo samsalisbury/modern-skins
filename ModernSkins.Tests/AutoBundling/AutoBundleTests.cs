@@ -73,7 +73,7 @@ namespace ModernSkins.Tests.AutoBundling
         [Test]
         public void EnumerateSkins_ShouldListCorrectSkins()
         {
-            var autoBundler = new SkinsDirAutoBundle(SkinsPath, _fs);
+            var autoBundler = new SkinsDirAutoBundle(SkinsPath, AppPath, _fs);
 
             var skins = autoBundler.EnumerateSkins();
 
@@ -87,24 +87,24 @@ namespace ModernSkins.Tests.AutoBundling
         }
 
         [Test]
-        public void CreateBundles_ShouldCreateExpectedOfBundles()
+        public void CreateBundles_ShouldCreateExpectedBundles()
         {
-            var autoBundler = new SkinsDirAutoBundle(SkinsPath, _fs);
+            var autoBundler = new SkinsDirAutoBundle(SkinsPath, AppPath, _fs);
 
             var bundles = autoBundler.CreateBundles();
 
             Assert.That(bundles, Has.Length.EqualTo(_expectedBundleVirtualPaths.Count));
             foreach (var virtualPath in _expectedBundleVirtualPaths)
             {
-                Assert.That(bundles.Count(b => b.VirtualPath(AppPath) == virtualPath), Is.GreaterThan(0), "Expected bundle '{0}' not created.", virtualPath);
-                Assert.That(bundles.Count(b => b.VirtualPath(AppPath) == virtualPath), Is.EqualTo(1), "Duplicate bundle '{0}' created.", virtualPath);
+                Assert.That(bundles.Count(b => b.CalculatedVirtualPath == virtualPath), Is.GreaterThan(0), "Expected bundle '{0}' not created.", virtualPath);
+                Assert.That(bundles.Count(b => b.CalculatedVirtualPath == virtualPath), Is.EqualTo(1), "Duplicate bundle '{0}' created.", virtualPath);
             }
         }
 
         [Test]
         public void RegisterBundles_ShouldRegisterBundles()
         {
-            var autoBundler = new SkinsDirAutoBundle(SkinsPath, _fs);
+            var autoBundler = new SkinsDirAutoBundle(SkinsPath, AppPath, _fs);
 
             var bundleCollection = new BundleCollection();
 

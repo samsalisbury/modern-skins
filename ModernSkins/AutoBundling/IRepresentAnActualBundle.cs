@@ -5,7 +5,8 @@ namespace ModernSkins.AutoBundling
     public interface IRepresentAnActualBundle
     {
         Bundle ToBundle(string appPath);
-        string VirtualPath(string skinsPath);
+        string CalculatedVirtualPath { get; set; }
+        string VirtualPath(string appPath);
         string Name { get; }
     }
 }

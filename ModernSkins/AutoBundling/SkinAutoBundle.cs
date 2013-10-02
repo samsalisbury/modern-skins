@@ -11,7 +11,7 @@ namespace ModernSkins.AutoBundling
         {
         }
 
-        public IRepresentAnActualBundle[] CreateBundles()
+        public IRepresentAnActualBundle[] CreateBundles(string appPath)
         {
             var list = new List<IRepresentAnActualBundle>();
 
@@ -25,6 +25,11 @@ namespace ModernSkins.AutoBundling
             {
                 var scripts = new ScriptsDirAutoBundle(SubPath(ScriptsDirName), FileSystem);
                 list.AddRange(scripts.GetScriptBundles().Values);
+            }
+
+            foreach (var bundle in list)
+            {
+                bundle.CalculatedVirtualPath = bundle.VirtualPath(appPath);
             }
             
             return list.ToArray();
