@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Optimization;
-using BundleTransformer.Core.Builders;
 using BundleTransformer.Core.Bundles;
-using BundleTransformer.Core.Orderers;
+using BundleTransformer.Core.Transformers;
 
 namespace ModernSkins.AutoBundling
 {
@@ -30,11 +29,11 @@ namespace ModernSkins.AutoBundling
             throw new NotImplementedException(string.Format("Bundling not implemented for {0}.", stub.GetType()));
         }
 
-        static CustomScriptBundle CreateScriptBundle(BundleStub bundleStub)
+        static ScriptBundle CreateScriptBundle(BundleStub bundleStub)
         {
-            var bundle = new CustomScriptBundle(bundleStub.VirtualUrl);
+            var bundle = new ScriptBundle(bundleStub.VirtualUrl);
             bundle.Include(bundleStub.AppRelativeContentPaths);
-            bundle.Orderer = new NullOrderer();
+            bundle.Orderer = new DefaultBundleOrderer();
             bundle.Builder = new DefaultBundleBuilder();
             bundle.Transforms.Add(new JsMinify());
 
@@ -45,6 +44,8 @@ namespace ModernSkins.AutoBundling
         {
             var bundle = new CustomStyleBundle(bundleStub.VirtualUrl);
             bundle.Include(bundleStub.AppRelativeContentPaths);
+            bundle.Orderer = new DefaultBundleOrderer();
+            bundle.Builder = new DefaultBundleBuilder();
 
             return bundle;
         }

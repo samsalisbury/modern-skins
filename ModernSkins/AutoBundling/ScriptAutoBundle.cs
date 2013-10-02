@@ -32,7 +32,7 @@ namespace ModernSkins.AutoBundling
             }
             else
             {
-                bundle.AppRelativeContentPaths = new[] {VirtualPath(appPath)};
+                bundle.AppRelativeContentPaths = new[] {VirtualPathWithExtension(appPath)};
             }
 
             return bundle;

@@ -19,16 +19,9 @@ namespace ModernSkins.AutoBundling
         const char FileExtensionSeparator = '.';
         const string VirtualPathPrefix = "~/";
 
-        public string VirtualPath(string skinsPath)
+        public string VirtualPath(string relativeToPath)
         {
-            if (!skinsPath.EndsWith(FileSystem.DirSeparator.ToString()))
-            {
-                skinsPath += FileSystem.DirSeparator;
-            }
-
-            var pathWithExtension = FileSystemPath
-                .Replace(skinsPath, VirtualPathPrefix)
-                .Replace(FileSystem.DirSeparator, WebPathSeparator);
+            var pathWithExtension = VirtualPathWithExtension(relativeToPath);
 
             var pieces = pathWithExtension.Split(WebPathSeparator);
             var lastPiece = pieces.Last();
@@ -42,6 +35,18 @@ namespace ModernSkins.AutoBundling
             pieces[pieces.Length - 1] = lastPiece.Substring(0, lastDotIndex);
 
             return string.Join(WebPathSeparator.ToString(), pieces);
+        }
+
+        public string VirtualPathWithExtension(string relativeToPath)
+        {
+            if (!relativeToPath.EndsWith(FileSystem.DirSeparator.ToString()))
+            {
+                relativeToPath += FileSystem.DirSeparator;
+            }
+
+            return FileSystemPath
+                .Replace(relativeToPath, VirtualPathPrefix)
+                .Replace(FileSystem.DirSeparator, WebPathSeparator);
         }
     }
 }
