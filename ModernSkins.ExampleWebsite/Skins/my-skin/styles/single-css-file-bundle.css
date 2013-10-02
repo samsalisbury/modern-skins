@@ -1,0 +1,10 @@
+﻿#single-css-file {
+    color: green;
+}
+#single-css-file span {
+    display: none;
+}
+
+#single-css-file:after {
+    content: " PASS!"
+}

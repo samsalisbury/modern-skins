@@ -1,0 +1,10 @@
+﻿#single-scss-file {
+	color: green;
+	span {
+		display:none;
+	}
+}
+
+#single-scss-file:after {
+	content: " PASS!";
+}
