@@ -4,7 +4,6 @@
 #single-css-file span {
     display: none;
 }
-
 #single-css-file:after {
     content: " PASS!"
 }
