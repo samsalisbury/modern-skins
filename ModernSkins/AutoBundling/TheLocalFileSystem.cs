@@ -2,7 +2,7 @@
 
 namespace ModernSkins.AutoBundling
 {
-    public class FileSystem : IFileSystem
+    public class TheLocalFileSystem : IFileSystem
     {
         public bool FileExists(string path)
         {

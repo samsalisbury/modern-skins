@@ -18,7 +18,7 @@ namespace ModernSkins.ExampleWebsite
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            var autoBundleConfig = new AutoBundler(Server.MapPath("~/Skins"));
+            var autoBundleConfig = new SkinsDirAutoBundle(Server.MapPath("~/Skins"));
 
             autoBundleConfig.RegisterBundles(BundleTable.Bundles);
         }

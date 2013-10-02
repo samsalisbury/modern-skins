@@ -64,11 +64,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoBundling\AutoBundlerBaseTests.cs" />
-    <Compile Include="AutoBundling\AutoBundlerTests.cs" />
+    <Compile Include="AutoBundling\AutoBundleBaseTests.cs" />
+    <Compile Include="AutoBundling\AutoBundleTests.cs" />
     <Compile Include="AutoBundling\ScriptAutoBundleTests.cs" />
     <Compile Include="AutoBundling\StyleAutoBundleTests.cs" />
-    <Compile Include="AutoBundling\TestAutoBundler.cs" />
+    <Compile Include="AutoBundling\TestAutoBundle.cs" />
     <Compile Include="FakeDirectory.cs" />
     <Compile Include="FakeFile.cs" />
     <Compile Include="FakeFileSystem.cs" />
@@ -79,7 +79,7 @@
     <Compile Include="FakeVirtualPathProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AutoBundling\ScriptsDirAutoBundleTests.cs" />
-    <Compile Include="AutoBundling\SkinTests.cs" />
+    <Compile Include="AutoBundling\SkinAutoBundleTests.cs" />
     <Compile Include="AutoBundling\StylesDirAutoBundleTests.cs" />
     <Compile Include="TestHelper.cs" />
   </ItemGroup>

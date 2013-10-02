@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace ModernSkins.Tests.AutoBundling
 {
     [TestFixture]
-    public class SkinTests
+    public class SkinAutoBundleTests
     {
         FakeFileSystem _fs;
         const string BasePath = "/skins";
@@ -58,7 +58,8 @@ namespace ModernSkins.Tests.AutoBundling
             _fs.AddFile("/skins/my-skin/styles/some-lib/another_file_in_a_lib.less");
             _fs.AddFile("/skins/my-skin/styles/some-lib/lib_files_do_not_show_up_as_bundles.css");
             _fs.AddFile("/skins/my-skin/styles/some-lib/and_nor_do_their_folders.css");
-            // Note: The above stanza adds no expectations, since it's a lib in the styles folder :)
+            // Note: The above stanza adds no expectations, since it's a lib in the styles folder. Just a red herring to try
+            // to confuse the tests ;)
         }
 
 
@@ -66,7 +67,7 @@ namespace ModernSkins.Tests.AutoBundling
         [TestCase("C:\\Nor\\is\\this")]
         public void Ctor_Throws_DirectoryNotFound_IfPassedNonExistentPath(string nonExistentPath)
         {
-            Assert.Throws<DirectoryNotFoundException>(() => new Skin(nonExistentPath, _fs));
+            Assert.Throws<DirectoryNotFoundException>(() => new SkinAutoBundle(nonExistentPath, _fs));
         }
 
         [TestCase("/Skins/testskin/styles/other_styles.less")]
@@ -75,7 +76,7 @@ namespace ModernSkins.Tests.AutoBundling
         {
             _fs.AddFile(filePath);
 
-            Assert.Throws<DirectoryNotFoundException>(() => new Skin(filePath, _fs));
+            Assert.Throws<DirectoryNotFoundException>(() => new SkinAutoBundle(filePath, _fs));
         }
 
         [TestCase("/Skins/testskin", "testskin")]
@@ -85,7 +86,7 @@ namespace ModernSkins.Tests.AutoBundling
             var fs = new FakeUnixFileSystem();
             fs.AddDirectory(skinDir);
 
-            var skin = new Skin(skinDir, fs);
+            var skin = new SkinAutoBundle(skinDir, fs);
 
             Assert.That(skin.Name, Is.EqualTo(expectedName));
         }
@@ -93,7 +94,7 @@ namespace ModernSkins.Tests.AutoBundling
         [Test]
         public void CreateBundles_ReturnsExpectedBundles()
         {
-            var skin = new Skin(TestSkinDir, _fs);
+            var skin = new SkinAutoBundle(TestSkinDir, _fs);
 
             var bundles = skin.CreateBundles();
 
@@ -115,11 +116,11 @@ namespace ModernSkins.Tests.AutoBundling
         [Test]
         public void ToBundles_ShouldReturnRealBundles()
         {
-            var skin = new Skin("/skins/my-skin", _fs);
+            var skin = new SkinAutoBundle("/skins/my-skin", _fs);
 
-            //var actualBundles = skin.ToBundles().ToList();
+            var actualBundles = skin.CreateBundles();
 
-            //Assert.That(actualBundles, Has.Count.EqualTo(_expectedBundles.Count));
+            Assert.That(actualBundles, Has.Length.EqualTo(_expectedBundles.Count));
         }
     }
 }

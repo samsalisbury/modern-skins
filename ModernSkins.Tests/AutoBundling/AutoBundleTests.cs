@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace ModernSkins.Tests.AutoBundling
 {
     [TestFixture]
-    public class AutoBundlerTests
+    public class AutoBundleTests
     {
         FakeFileSystem _fs;
         const string SkinsPath = "/base/my-app/SkinsDir";
@@ -29,7 +29,7 @@ namespace ModernSkins.Tests.AutoBundling
         [Test]
         public void EnumerateSkins_ShouldListCorrectSkins()
         {
-            var autoBundler = new AutoBundler(SkinsPath, _fs);
+            var autoBundler = new SkinsDirAutoBundle(SkinsPath, _fs);
 
             var skins = autoBundler.EnumerateSkins();
 
@@ -45,7 +45,7 @@ namespace ModernSkins.Tests.AutoBundling
         [Test]
         public void CreateBundles_ShouldCreateExpectedNumberOfBundles()
         {
-            var autoBundler = new AutoBundler(SkinsPath, _fs);
+            var autoBundler = new SkinsDirAutoBundle(SkinsPath, _fs);
 
             var bundles = autoBundler.CreateBundles();
 
@@ -55,7 +55,7 @@ namespace ModernSkins.Tests.AutoBundling
         [Test]
         public void RegisterBundles_ShouldRegisterBundles()
         {
-            var autoBundler = new AutoBundler(SkinsPath, _fs);
+            var autoBundler = new SkinsDirAutoBundle(SkinsPath, _fs);
 
             var bundleCollection = new BundleCollection();
 

@@ -12,7 +12,7 @@ namespace ModernSkins.AutoBundling
     {
         const string AppRelativeSkinPath = "~/Skins";
 
-        static readonly Dictionary<string, Skin> Skins = new Dictionary<string, Skin>();
+        static readonly Dictionary<string, SkinAutoBundle> Skins = new Dictionary<string, SkinAutoBundle>();
 
         static void Init(string skinsBaseDir)
         {
@@ -30,7 +30,7 @@ namespace ModernSkins.AutoBundling
             return path.Split(Path.DirectorySeparatorChar).Last();
         }
 
-        static Skin CreateSkin(string skinPath)
+        static SkinAutoBundle CreateSkin(string skinPath)
         {
             var skinName = GetLastPathPart(skinPath);
 
@@ -38,7 +38,7 @@ namespace ModernSkins.AutoBundling
 
             var jsBundles = CreateJsBundles(Path.Combine(skinPath, "scripts"), skinName);
 
-            return new Skin(null, null);
+            return new SkinAutoBundle(null, null);
         }
 
         static object CreateJsBundles(string scriptDirectory, string skinName)

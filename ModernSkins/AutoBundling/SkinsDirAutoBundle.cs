@@ -4,24 +4,24 @@ using System.Web.Optimization;
 
 namespace ModernSkins.AutoBundling
 {
-    public class AutoBundler
+    public class SkinsDirAutoBundle
     {
         readonly string _skinsDir;
         readonly IFileSystem _fileSystem;
 
-        public AutoBundler(string skinsDir) : this(skinsDir, new FileSystem())
+        public SkinsDirAutoBundle(string skinsDir) : this(skinsDir, new TheLocalFileSystem())
         {
         }
 
-        public AutoBundler(string skinsDir, IFileSystem fileSystem)
+        public SkinsDirAutoBundle(string skinsDir, IFileSystem fileSystem)
         {
             _skinsDir = skinsDir;
             _fileSystem = fileSystem;
         }
 
-        public IDictionary<string, Skin> EnumerateSkins()
+        public IDictionary<string, SkinAutoBundle> EnumerateSkins()
         {
-            var skins = _fileSystem.GetDirectories(_skinsDir).Select(dir => new Skin(dir, _fileSystem));
+            var skins = _fileSystem.GetDirectories(_skinsDir).Select(dir => new SkinAutoBundle(dir, _fileSystem));
 
             return skins.ToDictionary(skin => skin.Name);
         }

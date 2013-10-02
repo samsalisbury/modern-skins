@@ -4,9 +4,9 @@ using ModernSkins.AutoBundling;
 
 namespace ModernSkins.Tests.AutoBundling
 {
-    public class TestAutoBundler : AutoBundleBase
+    public class TestAutoBundle : AutoBundleBase
     {
-        public TestAutoBundler(string path, IFileSystem fileSystem) : base(path, fileSystem)
+        public TestAutoBundle(string path, IFileSystem fileSystem) : base(path, fileSystem)
         {
         }
     }

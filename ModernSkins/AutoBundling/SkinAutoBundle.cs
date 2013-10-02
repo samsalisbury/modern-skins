@@ -2,12 +2,12 @@
 
 namespace ModernSkins.AutoBundling
 {
-    public class Skin : DirAutoBundleBase
+    public class SkinAutoBundle : DirAutoBundleBase
     {
         const string StylesDirName = "styles";
         const string ScriptsDirName = "scripts";
 
-        public Skin(string path, IFileSystem fileSystem) : base(path, fileSystem)
+        public SkinAutoBundle(string path, IFileSystem fileSystem) : base(path, fileSystem)
         {
         }
 
