@@ -79,7 +79,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoBundling\SkinsDirAutoBundle.cs" />
-    <Compile Include="AutoBundling\AutoBundling.cs" />
     <Compile Include="AutoBundling\AutoBundleBase.cs" />
     <Compile Include="AutoBundling\DirAutoBundleBase.cs" />
     <Compile Include="AutoBundling\FileAutoBundleBase.cs" />
