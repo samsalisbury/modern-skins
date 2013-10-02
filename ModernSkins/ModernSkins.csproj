@@ -80,6 +80,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoBundling\AutoBundlingExtensions.cs" />
+    <Compile Include="AutoBundling\BundleStub.cs" />
+    <Compile Include="AutoBundling\CustomBundleFactory.cs" />
     <Compile Include="AutoBundling\SkinsDirAutoBundle.cs" />
     <Compile Include="AutoBundling\AutoBundleBase.cs" />
     <Compile Include="AutoBundling\DirAutoBundleBase.cs" />

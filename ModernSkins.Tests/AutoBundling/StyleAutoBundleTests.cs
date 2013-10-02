@@ -7,17 +7,17 @@ namespace ModernSkins.Tests.AutoBundling
     [TestFixture]
     public class StyleAutoBundleTests
     {
-        [TestCase("/my/app/Skins/name/styles/bundle.css", "/my/app/Skins", "~/name/styles/bundle")]
-        public void ToStyleBundle_ReturnsBundleWithExpectedPath(string bundlePath, string skinsPath, string virtualPath)
+        [TestCase("/my/app/Skins/name/styles/bundle.css", "/my/app", "/my/app/Skins", "~/name/styles/bundle")]
+        public void ToStyleBundle_ReturnsBundleWithExpectedPath(string bundlePath, string appPath, string skinsPath, string virtualPath)
         {
             var fs = new FakeUnixFileSystem();
             fs.AddFile(bundlePath);
 
             var autoBundle = new StyleAutoBundle(bundlePath, fs);
 
-            var bundle = autoBundle.ToBundle(skinsPath);
+            var bundle = autoBundle.ToBundle(appPath, skinsPath);
 
-            Assert.That(bundle.Path, Is.EqualTo(virtualPath));
+            Assert.That(bundle.VirtualUrl, Is.EqualTo(virtualPath));
         }
 
         [TestCase("C:\\MyApp\\Skins\\MyBundle.css")]

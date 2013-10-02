@@ -1,10 +1,8 @@
-﻿using System.Web.Optimization;
-
-namespace ModernSkins.AutoBundling
+﻿namespace ModernSkins.AutoBundling
 {
     public interface IRepresentAnActualBundle
     {
-        Bundle ToBundle(string appPath);
+        BundleStub ToBundle(string appPath, string virtualPath);
         string CalculatedVirtualPath { get; set; }
         string VirtualPath(string appPath);
         string Name { get; }

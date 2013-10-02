@@ -35,15 +35,5 @@ namespace ModernSkins.AutoBundling
 
             return bundles.ToArray();
         }
-
-        public void RegisterBundles(BundleCollection bundles)
-        {
-            var autoBundles = CreateBundles();
-            
-            foreach (var bundle in autoBundles)
-            {
-                bundles.Add(bundle.ToBundle(_appPath));
-            }
-        }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Web.Optimization;
-
-namespace ModernSkins.AutoBundling
+﻿namespace ModernSkins.AutoBundling
 {
     public class StyleAutoBundle : FileAutoBundleBase, IRepresentAnActualBundle
     {
@@ -8,9 +6,13 @@ namespace ModernSkins.AutoBundling
         {
         }
 
-        public Bundle ToBundle(string appPath)
+        public BundleStub ToBundle(string appPath, string skinsPath)
         {
-            return new StyleBundle(VirtualPath(appPath));
+            return new StyleBundleStub
+                   {
+                       VirtualUrl = VirtualPath(skinsPath),
+                       AppRelativeContentPaths = new[] {VirtualPath(appPath)}
+                   };
         }
 
         public string CalculatedVirtualPath { get; set; }

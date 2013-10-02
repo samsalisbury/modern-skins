@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web;
 using System.Web.Optimization;
 
@@ -28,13 +29,18 @@ namespace ModernSkins.AutoBundling
         }
 
         /// <summary>
-        ///   This is mainly for testing, too.
+        ///   You're usually better off calling the parameterless extension method "RegisterAutoBundles"
         /// </summary>
         public static void RegisterAutoBundles(this BundleCollection bundles, HttpServerUtilityBase server, IFileSystem fileSystem)
         {
             var autoBundleConfig = new SkinsDirAutoBundle(server.MapPath("~/Skins"), server.MapPath("~/"), fileSystem);
+            var stubs = autoBundleConfig.CreateBundles().Select(b => b.ToBundle(server.MapPath("~/"), server.MapPath("~/Skins")));
+            var realBundles = new CustomBundleFactory().CreateBundles(stubs);
 
-            autoBundleConfig.RegisterBundles(bundles);
+            foreach (var bundle in realBundles)
+            {
+                bundles.Add(bundle);
+            }
         }
     }
 }

@@ -56,14 +56,13 @@ namespace ModernSkins.Tests.AutoBundling
             fs.AddFiles("/app/skins/myskin/scripts/[bundle_a.js,bundle_b.js]");
 
             var autoBundle = new ScriptAutoBundle("/app/skins/myskin/scripts/mybundle", fs);
-            var bundle = autoBundle.ToBundle("/app");
+            var bundle = autoBundle.ToBundle("/app", "/app/skins");
 
-            var includedThings = DoHorrorReflectionOnBundleToFindOutWhatItContains(bundle);
+            var includedThings = bundle.AppRelativeContentPaths;
 
             Assert.That(includedThings, Has.Count.EqualTo(1));
             
-            // This assertion doesn't work as the item is "object" at runtime, giving up for now.
-            //Assert.That(includedThings[0].VirtualPath, Is.EqualTo("~/myskin/scripts/mybundle"));
+            Assert.That(includedThings[0], Is.EqualTo("~/myskin/scripts/mybundle"));
         }
 
         [Test]
@@ -73,26 +72,13 @@ namespace ModernSkins.Tests.AutoBundling
             fs.AddFiles("/app/skins/myskin/scripts/[bundle_a.js,bundle_b.js]");
 
             var autoBundle = new ScriptAutoBundle("/app/skins/myskin/scripts/bundle_a.js", fs);
-            var bundle = autoBundle.ToBundle("/app");
-            
-            var includedThings = DoHorrorReflectionOnBundleToFindOutWhatItContains(bundle);
+            var bundle = autoBundle.ToBundle("/app", "/app/skins");
+
+            var includedThings = bundle.AppRelativeContentPaths;
 
             Assert.That(includedThings, Has.Count.EqualTo(1));
             
-            // This assertion doesn't work as the item is "object" at runtime, giving up for now.
-            //Assert.That(includedThings[0].VirtualPath, Is.EqualTo("~/myskin/scripts/bundle_a.js"));
-        }
-
-        /// <summary>
-        ///   Horror reflection: Can't find any other way to verify the bundles, they're not public.
-        ///   Also, all the useful classes that could help are internal, so I have to cast to
-        ///   dynamic. Seriously Microsoft? This has cost me a lot of time.
-        /// </summary>
-        static IList<dynamic> DoHorrorReflectionOnBundleToFindOutWhatItContains(Bundle bundle)
-        {
-            var things = typeof (Bundle).GetProperty("Items", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(bundle, null);
-
-            return ((IList) things).Cast<dynamic>().ToList();
+            Assert.That(includedThings[0], Is.EqualTo("~/myskin/scripts/bundle_a.js"));
         }
     }
 }

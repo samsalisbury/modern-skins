@@ -100,17 +100,5 @@ namespace ModernSkins.Tests.AutoBundling
                 Assert.That(bundles.Count(b => b.CalculatedVirtualPath == virtualPath), Is.EqualTo(1), "Duplicate bundle '{0}' created.", virtualPath);
             }
         }
-
-        [Test]
-        public void RegisterBundles_ShouldRegisterBundles()
-        {
-            var autoBundler = new SkinsDirAutoBundle(SkinsPath, AppPath, _fs);
-
-            var bundleCollection = new BundleCollection();
-
-            autoBundler.RegisterBundles(bundleCollection);
-
-            Assert.That(bundleCollection, Has.Count.EqualTo(_expectedBundleVirtualPaths.Count));
-        }
     }
 }
