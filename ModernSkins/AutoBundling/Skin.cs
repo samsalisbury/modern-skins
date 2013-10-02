@@ -17,13 +17,13 @@ namespace ModernSkins.AutoBundling
 
             if (SubPathExists(StylesDirName))
             {
-                var styles = new StyleAutoBundler(SubPath(StylesDirName), FileSystem);
+                var styles = new StylesDirAutoBundle(SubPath(StylesDirName), FileSystem);
                 list.AddRange(styles.GetStyleBundles().Values);
             }
 
             if (SubPathExists(ScriptsDirName))
             {
-                var scripts = new ScriptAutoBundler(SubPath(ScriptsDirName), FileSystem);
+                var scripts = new ScriptsDirAutoBundle(SubPath(ScriptsDirName), FileSystem);
                 list.AddRange(scripts.GetScriptBundles().Values);
             }
             

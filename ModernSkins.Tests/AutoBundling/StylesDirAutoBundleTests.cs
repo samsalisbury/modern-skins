@@ -1,12 +1,10 @@
-﻿using System.Web.Optimization;
-using System.Web.UI.WebControls;
-using ModernSkins.AutoBundling;
+﻿using ModernSkins.AutoBundling;
 using NUnit.Framework;
 
 namespace ModernSkins.Tests.AutoBundling
 {
     [TestFixture]
-    public class StyleAutoBundlerTests
+    public class StylesDirAutoBundleTests
     {
         [TestCase("some_base_styles", "/my-skin/styles/some_base_styles.css")]
         [TestCase("some_scss_styles", "/my-skin/styles/some_scss_styles.scss")]
@@ -19,7 +17,7 @@ namespace ModernSkins.Tests.AutoBundling
             
             const string styleDirPath = "/my-skin/styles";
 
-            var bundler = new StyleAutoBundler(styleDirPath, fs);
+            var bundler = new StylesDirAutoBundle(styleDirPath, fs);
 
             var styles = bundler.GetStyleBundles();
 
@@ -42,7 +40,7 @@ namespace ModernSkins.Tests.AutoBundling
             var dir = fs.AddDirectory(styleDirPath);
             dir.AddFiles(file1, file2);
 
-            var bundler = new StyleAutoBundler(styleDirPath, fs);
+            var bundler = new StylesDirAutoBundle(styleDirPath, fs);
 
             Assert.Throws<StyleBundleWithSameNameException>(() => bundler.GetStyleBundles());
         }
@@ -57,7 +55,7 @@ namespace ModernSkins.Tests.AutoBundling
             dir.AddFiles("my_style.css", "my_other_style.css");
             dir.AddFiles("my_style.less", "my_other_style.less");
 
-            var bundler = new StyleAutoBundler(styleDirPath, fs);
+            var bundler = new StylesDirAutoBundle(styleDirPath, fs);
 
             var bundles = bundler.GetStyleBundles();
 
@@ -76,7 +74,7 @@ namespace ModernSkins.Tests.AutoBundling
             dir.AddFiles("my_style.css", "my_other_style.css");
             dir.AddFiles("my_style.scss", "my_other_style.scss");
 
-            var bundler = new StyleAutoBundler(styleDirPath, fs);
+            var bundler = new StylesDirAutoBundle(styleDirPath, fs);
 
             var bundles = bundler.GetStyleBundles();
 
@@ -95,7 +93,7 @@ namespace ModernSkins.Tests.AutoBundling
             dir.AddFiles("my_style.css", "my_other_style.css");
             dir.AddFiles("my_style.sass", "my_other_style.sass");
 
-            var bundler = new StyleAutoBundler(styleDirPath, fs);
+            var bundler = new StylesDirAutoBundle(styleDirPath, fs);
 
             var bundles = bundler.GetStyleBundles();
 

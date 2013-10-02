@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace ModernSkins.AutoBundling
 {
-    public class ScriptAutoBundler : DirAutoBundleBase
+    public class ScriptsDirAutoBundle : DirAutoBundleBase
     {
-        public ScriptAutoBundler(string dir, IFileSystem fileSystem) : base(dir, fileSystem)
+        public ScriptsDirAutoBundle(string dir, IFileSystem fileSystem) : base(dir, fileSystem)
         {
         }
 
