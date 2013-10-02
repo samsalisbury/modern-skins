@@ -4,7 +4,7 @@
     function dirJsBundleFileOne() {
         window.dirJsBundleFileOne = function() {
             var element = document.getElementById("dir-js-bundle");
-            element.innerText = element.innerText.replace("not ", "");
+            element.innerText = element.innerText.replace(" not ", " ");
             element.className = element.className + " pass";
         };
     }

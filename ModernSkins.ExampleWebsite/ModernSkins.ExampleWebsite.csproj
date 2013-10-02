@@ -193,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Skins\my-skin\styles\single-sass-file-bundle.sass" />
+    <Content Include="Skins\my-skin\scripts\single-coffee-file-bundle.coffee" />
     <None Include="Skins\my-skin\styles\single-scss-file-bundle.scss">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
