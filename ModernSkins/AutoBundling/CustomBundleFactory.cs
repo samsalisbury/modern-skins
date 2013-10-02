@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Optimization;
+using BundleTransformer.Core.Builders;
 using BundleTransformer.Core.Bundles;
+using BundleTransformer.Core.Orderers;
 
 namespace ModernSkins.AutoBundling
 {
@@ -32,6 +34,9 @@ namespace ModernSkins.AutoBundling
         {
             var bundle = new CustomScriptBundle(bundleStub.VirtualUrl);
             bundle.Include(bundleStub.AppRelativeContentPaths);
+            bundle.Orderer = new NullOrderer();
+            bundle.Builder = new DefaultBundleBuilder();
+            bundle.Transforms.Add(new JsMinify());
 
             return bundle;
         }

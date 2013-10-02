@@ -163,6 +163,7 @@
     <Content Include="Skins\my-skin\scripts\dir_bundle\dir_bundle_file.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\my-skin\scripts\dir_bundle\dir_bundle_file_2.js" />
     <Content Include="Skins\my-skin\scripts\file_bundle.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
