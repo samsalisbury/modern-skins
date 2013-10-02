@@ -10,10 +10,6 @@ namespace ModernSkins.AutoBundling
         readonly string _skinsDir;
         readonly IFileSystem _fileSystem;
 
-        public SkinsDirAutoBundle(string skinsDir, string appPath) : this(skinsDir, appPath, new TheLocalFileSystem())
-        {
-        }
-
         public SkinsDirAutoBundle(string skinsDir, string appPath, IFileSystem fileSystem)
         {
             _skinsDir = skinsDir;

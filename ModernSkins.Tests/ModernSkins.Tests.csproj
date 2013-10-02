@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="AutoBundling\AutoBundleBaseTests.cs" />
     <Compile Include="AutoBundling\AutoBundleTests.cs" />
+    <Compile Include="AutoBundling\AutoBundlingExtensionsTests.cs" />
     <Compile Include="AutoBundling\ScriptAutoBundleTests.cs" />
     <Compile Include="AutoBundling\StyleAutoBundleTests.cs" />
     <Compile Include="AutoBundling\TestAutoBundle.cs" />
