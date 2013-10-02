@@ -8,9 +8,9 @@ namespace ModernSkins.AutoBundling
         {
         }
 
-        public Bundle ToBundle(string skinsPath)
+        public Bundle ToBundle(string appPath)
         {
-            return new StyleBundle(VirtualPath(skinsPath));
+            return new StyleBundle(VirtualPath(appPath));
         }
 
         public string[] ListFilesToBundle()

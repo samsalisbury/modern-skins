@@ -20,9 +20,9 @@ namespace ModernSkins.AutoBundling
             return FileSystem.FileExists(FileSystemPath) ? new[] {FileSystemPath} : FileSystem.GetFiles(FileSystemPath);
         }
 
-        public Bundle ToBundle(string skinsPath)
+        public Bundle ToBundle(string appPath)
         {
-            var bundle = new ScriptBundle(VirtualPath(skinsPath));
+            var bundle = new ScriptBundle(VirtualPath(appPath));
 
             if (FileSystem.DirExists(FileSystemPath))
             {
@@ -30,11 +30,11 @@ namespace ModernSkins.AutoBundling
                 // Rather than relative to the Skins directory, as is done presently.
                 // Sort it!
 
-                bundle.IncludeDirectory(VirtualPath(skinsPath), "*.js");
+                bundle.IncludeDirectory(VirtualPath(appPath), "*.js");
             }
             else
             {
-                bundle.Include(VirtualPath(skinsPath));
+                bundle.Include(VirtualPath(appPath));
             }
 
             return bundle;

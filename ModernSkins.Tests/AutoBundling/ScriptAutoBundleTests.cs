@@ -56,7 +56,7 @@ namespace ModernSkins.Tests.AutoBundling
             fs.AddFiles("/app/skins/myskin/scripts/[bundle_a.js,bundle_b.js]");
 
             var autoBundle = new ScriptAutoBundle("/app/skins/myskin/scripts/mybundle", fs);
-            var bundle = autoBundle.ToBundle("/app/skins/");
+            var bundle = autoBundle.ToBundle("/app");
 
             var includedThings = DoHorrorReflectionOnBundleToFindOutWhatItContains(bundle);
 
@@ -73,7 +73,7 @@ namespace ModernSkins.Tests.AutoBundling
             fs.AddFiles("/app/skins/myskin/scripts/[bundle_a.js,bundle_b.js]");
 
             var autoBundle = new ScriptAutoBundle("/app/skins/myskin/scripts/bundle_a.js", fs);
-            var bundle = autoBundle.ToBundle("/app/skins/");
+            var bundle = autoBundle.ToBundle("/app");
             
             var includedThings = DoHorrorReflectionOnBundleToFindOutWhatItContains(bundle);
 

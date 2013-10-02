@@ -1,4 +1,6 @@
-﻿using System.Web.Optimization;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Optimization;
 using ModernSkins.AutoBundling;
 using NUnit.Framework;
 
@@ -8,22 +10,64 @@ namespace ModernSkins.Tests.AutoBundling
     public class AutoBundleTests
     {
         FakeFileSystem _fs;
-        const string SkinsPath = "/base/my-app/SkinsDir";
+        const string AppPath = "/base/my-app";
+        const string SkinsPath = AppPath + "/SkinsDir";
+        List<string> _expectedBundleVirtualPaths;
 
         [SetUp]
         public void SetUp()
         {
             _fs = new FakeUnixFileSystem();
+            _expectedBundleVirtualPaths = new List<string>();
+            // This should add 3 style bundles
             _fs.AddFiles(SkinsPath + "/skin1/styles[base_styles.css,other_styles.scss,my_styles.less]");
+            _expectedBundleVirtualPaths.Add("~/skin1/styles/base_styles");
+            _expectedBundleVirtualPaths.Add("~/skin1/styles/other_styles");
+            _expectedBundleVirtualPaths.Add("~/skin1/styles/my_styles");
+
+            // This should add no style bundles, since directories inside /styles are ignored.
             _fs.AddFiles(SkinsPath + "/skin1/styles/lib[dirs,in,styles,dir,are,not,bundles]");
+
+            // This should just add one style, since css files are ignored
+            _fs.AddFiles(SkinsPath + "/skin1/styles/[compiled.css,compiled.sass]");
+            _expectedBundleVirtualPaths.Add("~/skin1/styles/compiled");
+
+            // This should add 4 script bundles
             _fs.AddFiles(SkinsPath + "/skin1/scripts[all.js,scripts.coffee,are.js,bundles.js]");
+            _expectedBundleVirtualPaths.Add("~/skin1/scripts/all");
+            _expectedBundleVirtualPaths.Add("~/skin1/scripts/scripts");
+            _expectedBundleVirtualPaths.Add("~/skin1/scripts/are");
+            _expectedBundleVirtualPaths.Add("~/skin1/scripts/bundles");
+
+            // These next 2 should add one bundle each, since they are dirs inside /scripts
             _fs.AddFiles(SkinsPath + "/skin1/scripts/bundle_a[script_dirs.js,are_single_bundles.js,ok.coffee]");
             _fs.AddFiles(SkinsPath + "/skin1/scripts/bundle_b[script_dirs.js,are_single_bundles.js,ok.coffee]");
+            _expectedBundleVirtualPaths.Add("~/skin1/scripts/bundle_a");
+            _expectedBundleVirtualPaths.Add("~/skin1/scripts/bundle_b");
+
+            // Another skin, similar expectations...
+
+            // This should add 3 style bundles
             _fs.AddFiles(SkinsPath + "/skin2/styles[base_styles.css,other_styles.scss,my_styles.less]");
-            _fs.AddFiles(SkinsPath + "/skin2/styles/lib[dirs,in,styles,dir,are,not,bundles]");
+            _expectedBundleVirtualPaths.Add("~/skin2/styles/base_styles");
+            _expectedBundleVirtualPaths.Add("~/skin2/styles/other_styles");
+            _expectedBundleVirtualPaths.Add("~/skin2/styles/my_styles");
+
+            // No style bundles (dirs are ignored inside /styles)
+            _fs.AddFiles(SkinsPath + "/skin2/styles/lib[dirs.css,in.sass,styles.scss,dir.other,are.css,not.less,bundles.sass]");
+
+            // 3 script bundles
             _fs.AddFiles(SkinsPath + "/skin2/scripts[all.js,scripts.coffee,are.js,bundles.js]");
+            _expectedBundleVirtualPaths.Add("~/skin2/scripts/all");
+            _expectedBundleVirtualPaths.Add("~/skin2/scripts/scripts");
+            _expectedBundleVirtualPaths.Add("~/skin2/scripts/are");
+            _expectedBundleVirtualPaths.Add("~/skin2/scripts/bundles");
+
+            // 2 script bundles, one for each directory
             _fs.AddFiles(SkinsPath + "/skin2/scripts/bundle_a[script_dirs.js,are_single_bundles.js,ok.coffee]");
             _fs.AddFiles(SkinsPath + "/skin2/scripts/bundle_b[script_dirs.js,are_single_bundles.js,ok.coffee]");
+            _expectedBundleVirtualPaths.Add("~/skin2/scripts/bundle_a");
+            _expectedBundleVirtualPaths.Add("~/skin2/scripts/bundle_b");
         }
 
         [Test]
@@ -43,13 +87,18 @@ namespace ModernSkins.Tests.AutoBundling
         }
 
         [Test]
-        public void CreateBundles_ShouldCreateExpectedNumberOfBundles()
+        public void CreateBundles_ShouldCreateExpectedOfBundles()
         {
             var autoBundler = new SkinsDirAutoBundle(SkinsPath, _fs);
 
             var bundles = autoBundler.CreateBundles();
 
-            Assert.That(bundles, Has.Length.EqualTo(18));
+            Assert.That(bundles, Has.Length.EqualTo(_expectedBundleVirtualPaths.Count));
+            foreach (var virtualPath in _expectedBundleVirtualPaths)
+            {
+                Assert.That(bundles.Count(b => b.VirtualPath(AppPath) == virtualPath), Is.GreaterThan(0), "Expected bundle '{0}' not created.", virtualPath);
+                Assert.That(bundles.Count(b => b.VirtualPath(AppPath) == virtualPath), Is.EqualTo(1), "Duplicate bundle '{0}' created.", virtualPath);
+            }
         }
 
         [Test]
@@ -61,7 +110,7 @@ namespace ModernSkins.Tests.AutoBundling
 
             autoBundler.RegisterBundles(bundleCollection);
 
-            Assert.That(bundleCollection, Has.Count.EqualTo(18));
+            Assert.That(bundleCollection, Has.Count.EqualTo(_expectedBundleVirtualPaths.Count));
         }
     }
 }
