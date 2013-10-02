@@ -168,29 +168,30 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\my-skin\styles\base.css">
-      <DependentUpon>base.less</DependentUpon>
+      <DependentUpon>base.scss</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\my-skin\styles\base.min.css">
-      <DependentUpon>base.less</DependentUpon>
+      <DependentUpon>base.scss</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\my-skin\styles\lib\base.css">
-      <DependentUpon>lib.less</DependentUpon>
+      <DependentUpon>lib.scss</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\my-skin\styles\lib\base.min.css">
-      <DependentUpon>lib.less</DependentUpon>
+      <DependentUpon>lib.scss</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\my-skin\styles\lib\lib.css">
-      <DependentUpon>lib.less</DependentUpon>
+      <DependentUpon>lib.scss</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\my-skin\styles\lib\lib.min.css">
-      <DependentUpon>lib.less</DependentUpon>
+      <DependentUpon>lib.scss</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skins\my-skin\styles\test_css.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -215,14 +216,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Skins\my-skin\styles\base.less">
+    <None Include="Skins\my-skin\styles\base.scss">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
+    <Content Include="Skins\my-skin\styles\test_less.less" />
+    <Content Include="Views\Shared\SkinSnippets\Script.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Skins\my-skin\styles\lib\lib.less">
+    <None Include="Skins\my-skin\styles\lib\lib.scss">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />

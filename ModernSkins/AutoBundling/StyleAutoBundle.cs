@@ -11,7 +11,7 @@
             return new StyleBundleStub
                    {
                        VirtualUrl = VirtualPath(skinsPath),
-                       AppRelativeContentPaths = new[] {VirtualPath(appPath)}
+                       AppRelativeContentPaths = new[] {VirtualPathWithExtension(appPath)}
                    };
         }
 

@@ -1,12 +1,17 @@
-﻿@using System.Web.Optimization
+﻿@using ModernSkins
+@{
+    var Skin = Html.Skin("my-skin");
+}
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Layout</title>
-    @Scripts.Render("~/my-skin/scripts/file_bundle")
-    @Scripts.Render("~/my-skin/scripts/dir_bundle")
-    @Styles.Render("~/my-skin/styles/base")
+    @Skin.Script("file_bundle")
+    @Skin.Script("dir_bundle")
+    @Skin.Style("base")
+    @Skin.Style("test_css")
+    @Skin.Style("test_less")
 </head>
 <body>
     <div>

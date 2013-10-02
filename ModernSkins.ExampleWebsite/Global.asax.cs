@@ -18,6 +18,8 @@ namespace ModernSkins.ExampleWebsite
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
+            // Usually this is controlled by debug mode on or off.
+            BundleTable.EnableOptimizations = true;
             BundleTable.Bundles.RegisterAutoBundles();
         }
     }
