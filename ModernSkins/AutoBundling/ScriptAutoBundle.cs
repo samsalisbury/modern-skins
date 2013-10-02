@@ -3,6 +3,10 @@ using System.Linq;
 
 namespace ModernSkins.AutoBundling
 {
+    // TODO: There is a distinction between "virtual source paths" and "virtual urls" that
+    // needs to be a lot clearer in the code. This would also make it easier to push refs to
+    // skins path and path up away from the leaf nodes in the object graph, where they're causing mess.
+
     public class ScriptAutoBundle : AutoBundleBase, IRepresentAnActualBundle
     {
         public ScriptAutoBundle(string path, IFileSystem fileSystem) : base(path, fileSystem)
