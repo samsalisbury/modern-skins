@@ -97,7 +97,6 @@
     <Compile Include="AutoBundling\SkinAutoBundle.cs" />
     <Compile Include="AutoBundling\StyleAutoBundle.cs" />
     <Compile Include="AutoBundling\StylesDirAutoBundle.cs" />
-    <Compile Include="ScriptModel.cs" />
     <Compile Include="Skin.cs" />
     <Compile Include="SkinHelper.cs" />
   </ItemGroup>
