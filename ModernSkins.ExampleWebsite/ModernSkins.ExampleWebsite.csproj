@@ -225,7 +225,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59916</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:59683/</IISUrl>
+          <IISUrl>http://localhost:59683/test-app-folder/inner-app</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
