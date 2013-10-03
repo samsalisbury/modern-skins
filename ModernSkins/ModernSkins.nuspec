@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>http://github.com/samsalisbury/modern-skins</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial release, expect things to change rapidly before a 1.0 release.</releaseNotes>
+    <tags>Skin Skins CSS SASS SCSS LESS JS JavaScript ASP.NET MVC Web Bundling Minification</tags>
+  </metadata>
+</package>
