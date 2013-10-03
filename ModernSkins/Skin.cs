@@ -21,7 +21,7 @@ namespace ModernSkins
         ///   The return value is a hoax, to allow slightly neater one-line usage in views.
         /// </returns>
         /// <remarks>
-        ///   Can also be used from Global, e.g. on Application_Start
+        ///   Can also be used from Global, e.g. on Application_BeginRequest
         /// </remarks>
         public static IHtmlString SetSkin(string skinName)
         {
