@@ -39,6 +39,13 @@
             <p class="style" id="single-scss-file">    Single SCSS file bundle <span>not</span> loaded.</p>
             <p class="style" id="single-sass-file">    Single SASS file bundle <span>not</span> loaded.</p>
             <p class="style" id="single-less-file">    Single LESS file bundle <span>not</span> loaded.</p>
+            
+            <h2>Partials</h2>
+            @Skin.Partial("SomePartial", Html)
+            
+            <h2>Images</h2>
+            @Skin.Image("Fractal.png")
+
         </section>
         @Skin.ScriptBundle("single-js-file-bundle")
         @Skin.ScriptBundle("dir-js-bundle")

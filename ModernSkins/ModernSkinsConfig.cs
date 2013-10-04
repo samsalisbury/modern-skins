@@ -1,4 +1,4 @@
-﻿namespace ModernSkins.AutoBundling
+﻿namespace ModernSkins
 {
     public class ModernSkinsConfig
     {

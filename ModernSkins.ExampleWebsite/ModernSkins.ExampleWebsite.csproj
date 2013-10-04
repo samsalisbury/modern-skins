@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
+    <Content Include="Skins\my-skin\images\Fractal.png" />
     <Content Include="Skins\my-skin\scripts\dir-js-bundle\dir-js-bundle-file-1.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -170,7 +171,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\my-skin\styles\single-css-file-bundle.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -182,7 +185,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Skins\my-skin\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -196,10 +198,13 @@
   <ItemGroup>
     <Content Include="Skins\my-skin\styles\single-sass-file-bundle.sass" />
     <Content Include="Skins\my-skin\scripts\single-coffee-file-bundle.coffee" />
+    <Content Include="Skins\my-skin\SomePartial.cshtml" />
     <None Include="Skins\my-skin\styles\single-scss-file-bundle.scss">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Content Include="Skins\my-skin\styles\single-less-file-bundle.less" />
+    <Content Include="Skins\my-skin\_MySkinMasterPage.cshtml" />
+    <Content Include="Skins\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
