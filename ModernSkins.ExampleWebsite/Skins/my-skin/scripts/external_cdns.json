@@ -1,0 +1,25 @@
+﻿/* 
+	- Specify bundles by name, without any extension.
+
+	- CDN urls must start with '//', not http nor https
+
+	- The CDN you choose MUST support HTTPS without
+      generating any errors or warnings.
+	
+    - The FallbackExpression is used to check whether
+      the load from the CDN worked. If it evaluates (in JS)
+      to a falsy value, the local copy of the bundle will
+      be used. If not, the local version of the file is
+      used. This is bad, if it happens often consider using
+      a different CDN.
+*/
+{ 
+	"jquery-1.10.2": { 
+		"CDN": "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js",
+		"FallbackExpression": "window.jQuery"
+	},
+	"angular": { 
+		"CDN": "//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js",
+		"FallbackExpression": "window.angularInit"
+	}
+}
