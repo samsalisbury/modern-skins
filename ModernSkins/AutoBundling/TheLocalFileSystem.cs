@@ -39,5 +39,10 @@ namespace ModernSkins.AutoBundling
         {
             return Path.GetFileName(path);
         }
+
+        public string ReadFile(string path)
+        {
+            return File.ReadAllText(path);
+        }
     }
 }

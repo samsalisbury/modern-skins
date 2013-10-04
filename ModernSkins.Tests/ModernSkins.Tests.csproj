@@ -70,6 +70,7 @@
     <Compile Include="AutoBundling\ScriptAutoBundleTests.cs" />
     <Compile Include="AutoBundling\StyleAutoBundleTests.cs" />
     <Compile Include="AutoBundling\TestAutoBundle.cs" />
+    <Compile Include="AutoBundling\ThirdPartyCdnConfigTests.cs" />
     <Compile Include="FakeDirectory.cs" />
     <Compile Include="FakeFile.cs" />
     <Compile Include="FakeFileSystem.cs" />

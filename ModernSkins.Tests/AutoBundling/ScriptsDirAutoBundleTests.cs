@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.Optimization;
-using ModernSkins.AutoBundling;
+﻿using ModernSkins.AutoBundling;
 using NUnit.Framework;
 
 namespace ModernSkins.Tests.AutoBundling
@@ -10,7 +8,7 @@ namespace ModernSkins.Tests.AutoBundling
     {
         [TestCase("bundle_a", "/scripts/bundle_a/a_file.js", "/scripts/bundle_a")]
         [TestCase("bundle_b", "/scripts/bundle_b/a_file.js", "/scripts/bundle_b")]
-        [TestCase("js_bundle", "/scripts/js_bundle.coffee", "/scripts/js_bundle.coffee")]
+        [TestCase("js_bundle", "/scripts/js_bundle.js", "/scripts/js_bundle.js")]
         [TestCase("another_js_bundle", "/scripts/another_js_bundle.js", "/scripts/another_js_bundle.js")]
         public void GetScriptBundles_ReturnsExpectedBundles(string expectedName, string fileToCreate, string expectedPath)
         {
@@ -29,22 +27,32 @@ namespace ModernSkins.Tests.AutoBundling
         }
 
         [Test]
+        public void GetScriptBundles_WhenThereAreNonJsFilesInTheScriptsDir_TheyAreIgnored()
+        {
+            var fs = new FakeUnixFileSystem();
+            fs.AddFile("/scripts/a_js_file.js");
+            fs.AddFile("/scripts/a_non_js_file.json");
+            fs.AddFile("/scripts/another_non_je_file.json");
+
+            var bundler = new ScriptsDirAutoBundle("/scripts", fs);
+
+            var scripts = bundler.GetScriptBundles();
+
+            Assert.That(scripts, Has.Count.EqualTo(1));
+            Assert.That(scripts["a_js_file"].Name, Is.EqualTo("a_js_file"));
+        }
+
+        [Test]
         public void GetScriptBundles_WithThirdPartyCdnConfigs_CreatesCorrectScriptAutoBundle()
         {
-            var thirdPartyCdnConfigs = new List<ThirdPartyCdnConfig>
-                                       {
-                                           new ThirdPartyCdnConfig
-                                           {
-                                               BundleName = "coolscript-1.0",
-                                               Url = "//third-party.cdn.com/coolscript-1.0.min.js",
-                                               FallbackExpression = "window.coolscript"
-                                           }
-                                       };
+            const string thirdPartyCdnsJsonFormat = "{{'{0}': {{ 'cdnUrl': '{1}', 'FallbackExpression': '{2}' }} }}";
+
+            var json = string.Format(thirdPartyCdnsJsonFormat, "coolscript-1.0", "//third-party.cdn.com/coolscript-1.0.min.js", "window.coolscript");
 
             var fs = new FakeUnixFileSystem();
             fs.AddFiles("/app/skins/skin1/scripts[coolscript-1.0.js,otherscript.js]");
 
-            fs.AddFile("/app/skins/skin1/scripts/third_party_cdns.json");
+            fs.AddFile("/app/skins/skin1/scripts/third_party_cdns.json", json);
 
             var bundler = new ScriptsDirAutoBundle("/app/skins/skin1/scripts", fs);
 

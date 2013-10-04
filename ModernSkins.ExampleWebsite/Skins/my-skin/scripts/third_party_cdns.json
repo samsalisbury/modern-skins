@@ -13,13 +13,15 @@
       used. This is bad, if it happens often consider using
       a different CDN.
 */
-{ 
-	"jquery-1.10.2": { 
-		"CDN": "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js",
+[
+	{
+        "BundleName": "jquery-1.10.2", 
+		"CdnUrl": "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js",
 		"FallbackExpression": "window.jQuery"
 	},
-	"angular": { 
-		"CDN": "//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js",
+	{
+        "BundleName": "angular",
+		"CdnUrl": "//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js",
 		"FallbackExpression": "window.angularInit"
 	}
-}
+]

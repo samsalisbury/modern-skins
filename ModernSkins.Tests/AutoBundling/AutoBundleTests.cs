@@ -33,15 +33,15 @@ namespace ModernSkins.Tests.AutoBundling
             _expectedBundleVirtualPaths.Add("~/skin1/styles/compiled");
 
             // This should add 4 script bundles
-            _fs.AddFiles(SkinsPath + "/skin1/scripts[all.js,scripts.coffee,are.js,bundles.js]");
+            _fs.AddFiles(SkinsPath + "/skin1/scripts[all.js,scripts.js,are.js,bundles.js]");
             _expectedBundleVirtualPaths.Add("~/skin1/scripts/all");
             _expectedBundleVirtualPaths.Add("~/skin1/scripts/scripts");
             _expectedBundleVirtualPaths.Add("~/skin1/scripts/are");
             _expectedBundleVirtualPaths.Add("~/skin1/scripts/bundles");
 
             // These next 2 should add one bundle each, since they are dirs inside /scripts
-            _fs.AddFiles(SkinsPath + "/skin1/scripts/bundle_a[script_dirs.js,are_single_bundles.js,ok.coffee]");
-            _fs.AddFiles(SkinsPath + "/skin1/scripts/bundle_b[script_dirs.js,are_single_bundles.js,ok.coffee]");
+            _fs.AddFiles(SkinsPath + "/skin1/scripts/bundle_a[script_dirs.js,are_single_bundles.js,ok.js]");
+            _fs.AddFiles(SkinsPath + "/skin1/scripts/bundle_b[script_dirs.js,are_single_bundles.js,ok.js]");
             _expectedBundleVirtualPaths.Add("~/skin1/scripts/bundle_a");
             _expectedBundleVirtualPaths.Add("~/skin1/scripts/bundle_b");
 
@@ -57,15 +57,15 @@ namespace ModernSkins.Tests.AutoBundling
             _fs.AddFiles(SkinsPath + "/skin2/styles/lib[dirs.css,in.sass,styles.scss,dir.other,are.css,not.less,bundles.sass]");
 
             // 3 script bundles
-            _fs.AddFiles(SkinsPath + "/skin2/scripts[all.js,scripts.coffee,are.js,bundles.js]");
+            _fs.AddFiles(SkinsPath + "/skin2/scripts[all.js,scripts.js,are.js,bundles.js]");
             _expectedBundleVirtualPaths.Add("~/skin2/scripts/all");
             _expectedBundleVirtualPaths.Add("~/skin2/scripts/scripts");
             _expectedBundleVirtualPaths.Add("~/skin2/scripts/are");
             _expectedBundleVirtualPaths.Add("~/skin2/scripts/bundles");
 
             // 2 script bundles, one for each directory
-            _fs.AddFiles(SkinsPath + "/skin2/scripts/bundle_a[script_dirs.js,are_single_bundles.js,ok.coffee]");
-            _fs.AddFiles(SkinsPath + "/skin2/scripts/bundle_b[script_dirs.js,are_single_bundles.js,ok.coffee]");
+            _fs.AddFiles(SkinsPath + "/skin2/scripts/bundle_a[script_dirs.js,are_single_bundles.js,ok.js]");
+            _fs.AddFiles(SkinsPath + "/skin2/scripts/bundle_b[script_dirs.js,are_single_bundles.js,ok.js]");
             _expectedBundleVirtualPaths.Add("~/skin2/scripts/bundle_a");
             _expectedBundleVirtualPaths.Add("~/skin2/scripts/bundle_b");
         }
