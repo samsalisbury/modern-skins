@@ -74,13 +74,27 @@ namespace ModernSkins.Tests
             return path.Split(DirSeparator).Last();
         }
 
-        public void AddFile(string path)
+        public FakeFile AddFile(string path)
         {
-            var fileNameSeparatorIndex = path.LastIndexOf(DirSeparator);
-            var fileName = path.Substring(fileNameSeparatorIndex + 1);
-            var dirPath = path.Substring(0, fileNameSeparatorIndex);
+            return AddFile(path, null);
+        }
 
-            AddDirectory(dirPath).AddChild(new FakeFile(fileName));
+        public FakeFile AddFile(string path, string content)
+        {
+            var extensionSeparatorIndex = path.LastIndexOf(DirSeparator);
+            var fileName = path.Substring(extensionSeparatorIndex + 1);
+            var dirPath = path.Substring(0, extensionSeparatorIndex);
+
+            var file = new FakeFile(fileName, content);
+
+            AddDirectory(dirPath).AddChild(file);
+
+            return file;
+        }
+
+        public string ReadFile(string path)
+        {
+            return ((FakeFile) Root.Object(path)).Content;
         }
     }
 }

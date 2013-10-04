@@ -43,5 +43,9 @@ namespace ModernSkins.AutoBundling
         }
 
         public string CalculatedVirtualPath { get; set; }
+
+        public string ThirdPartyCdnUrl { get; set; }
+
+        public string CdnFallbackExpression { get; set; }
     }
 }

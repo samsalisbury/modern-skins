@@ -47,12 +47,17 @@ namespace ModernSkins.AutoBundling
 
         ScriptBundle CreateScriptBundle(BundleStub bundleStub)
         {
-            var bundle = new ScriptBundle(bundleStub.VirtualUrl);
+            var bundle = new ScriptBundle(bundleStub.VirtualUrl)
+                         {
+                             Orderer = new DefaultBundleOrderer(),
+                             Builder = new DefaultBundleBuilder(),
+                         };
+
             bundle.Include(bundleStub.AppRelativeContentPaths);
-            bundle.Orderer = new DefaultBundleOrderer();
-            bundle.Builder = new DefaultBundleBuilder();
             bundle.Transforms.Add(new JsMinify());
 
+            // TODO: Get the CdnFallbackExpression from the JSON...
+            //bundle.CdnFallbackExpression = "";
             AddProxyCdnIfDefined(bundle);
 
             return bundle;

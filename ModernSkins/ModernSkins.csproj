@@ -84,6 +84,7 @@
     <Compile Include="AutoBundling\AutoBundlingExtensions.cs" />
     <Compile Include="AutoBundling\BundleStub.cs" />
     <Compile Include="AutoBundling\CustomBundleFactory.cs" />
+    <Compile Include="AutoBundling\ThirdPartyCdnConfig.cs" />
     <Compile Include="ModernSkinsConfig.cs" />
     <Compile Include="AutoBundling\SkinsDirAutoBundle.cs" />
     <Compile Include="AutoBundling\AutoBundleBase.cs" />

@@ -167,6 +167,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\my-skin\scripts\dir-js-bundle\dir-js-bundle-file-2.js" />
+    <None Include="Skins\my-skin\scripts\external_cdns.json" />
     <Content Include="Skins\my-skin\scripts\single-js-file-bundle.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

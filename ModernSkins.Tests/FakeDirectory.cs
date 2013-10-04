@@ -46,7 +46,7 @@ namespace ModernSkins.Tests
         {
             foreach (var name in names)
             {
-                AddChild(new FakeFile(name));
+                AddChild(new FakeFile(name, null));
             }
 
             return this;

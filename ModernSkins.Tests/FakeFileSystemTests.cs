@@ -160,5 +160,27 @@ namespace ModernSkins.Tests
 
             Assert.That(result, Is.EqualTo("/part1/part2"));
         }
+
+        [Test]
+        public void AddFile_WithContentString_CreatesFileWithContent()
+        {
+            const string someContent = "Some content. Hello.";
+            
+            var file = _fs.AddFile("/path/my-file.txt", someContent);
+
+            Assert.That(file.Content, Is.EqualTo(someContent));
+        }
+
+        [Test]
+        public void ReadFile_ReturnsFileContent()
+        {
+            const string filePath = "/path/my-file.txt";
+            const string writtenContent = "Some content. Hello.";
+            _fs.AddFile(filePath, writtenContent);
+
+            var readContent = _fs.ReadFile(filePath);
+
+            Assert.That(readContent, Is.EqualTo(writtenContent));
+        }
     }
 }

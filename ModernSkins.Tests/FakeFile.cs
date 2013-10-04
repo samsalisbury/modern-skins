@@ -2,9 +2,11 @@
 {
     public class FakeFile : FakeFileSystemObject
     {
-        public FakeFile(string name) : base(name)
+        public string Content { get; set; }
+
+        public FakeFile(string name, string content) : base(name)
         {
-            
+            Content = content;
         }
     }
 }
